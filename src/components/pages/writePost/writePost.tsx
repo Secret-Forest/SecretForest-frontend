@@ -1,13 +1,18 @@
+import { useRef } from "react";
 import * as S from "./styled";
 
 const WritePost = () => {
+  const nickNameRef = useRef<HTMLInputElement>(null);
+  const PWRef = useRef<HTMLInputElement>(null);
+  const PWCheckRef = useRef<HTMLInputElement>(null);
+
   return (
     <S.WritePostPage>
       <S.PostInfo>
         <div>
-          <S.InfoInput placeholder="닉네임을 입력해주세요" />
-          <S.InfoInput placeholder="비밀번호를 입력해주세요" />
-          <S.InfoInput placeholder="비밀번호를 다시 입력해주세요" />
+          <S.InfoInput ref={nickNameRef} placeholder="닉네임" />
+          <S.InfoInput ref={PWRef} placeholder="비밀번호" />
+          <S.InfoInput ref={PWCheckRef} placeholder="비밀번호 확인" />
         </div>
       </S.PostInfo>
       <S.WritePost>

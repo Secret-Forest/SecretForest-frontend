@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const WritePostPage = styled.main`
-  width: 1800px;
-  height: 86vh;
+  width: 98vw;
+  /* height: 85vh; */
+  height: auto;
   margin: 20px auto;
   display: flex;
 `;
 
 export const PostInfo = styled.section`
-  height: 100%;
   width: 20%;
+  height: 85vh;
   display: grid;
   justify-items: center;
   align-items: center;
   flex-direction: column;
+
   div {
     display: grid;
     justify-items: center;
@@ -31,13 +33,13 @@ export const WritePost = styled.section`
 
 export const InfoInput = styled.input`
   background-color: #087f5b;
-  width: 300px;
-  height: 80px;
+  width: 100%;
+  height: 4em;
   outline: none;
   border: none;
 
   color: #d1d1d5;
-  font-size: 20px;
+  font-size: 1.2em;
   padding: 0 10px;
 
   &::placeholder {
@@ -64,8 +66,8 @@ export const TitleInput = styled.input`
   margin-top: 10px;
 
   border: 1px solid #202020;
-  width: 1380px;
-  height: 65px;
+  width: 98%;
+  height: 8vh;
 `;
 
 export const ContextInput = styled.textarea`
@@ -74,8 +76,8 @@ export const ContextInput = styled.textarea`
   margin-top: 10px;
 
   border: 1px solid #202020;
-  width: 1380px;
-  height: 520px;
+  width: 98%;
+  height: 52vh;
 
   resize: none;
 `;
@@ -88,6 +90,7 @@ export const ButtonBar = styled.div`
   width: auto;
 
   button {
+    margin-bottom: 30px;
     background-color: #314f3e;
     outline: none;
     border: none;
