@@ -1,10 +1,39 @@
 import { useRef } from "react";
+import swal from "sweetalert";
 import * as S from "./styled";
 
 const WritePost = () => {
   const nickNameRef = useRef<HTMLInputElement>(null);
   const PWRef = useRef<HTMLInputElement>(null);
   const PWCheckRef = useRef<HTMLInputElement>(null);
+
+  const submit = () => {
+    const nickName = nickNameRef.current?.value;
+    const PW = PWRef.current?.value;
+    const PWCheck = PWCheckRef.current?.value;
+
+    if (!nickName) {
+      swal({
+        title: "닉네임을 입력하세요!",
+        icon: "error",
+      });
+      return null;
+    }
+
+    if (PW !== PWCheck) {
+      swal({
+        title: "비밀번호가 같지 않습니다!!",
+        icon: "error",
+      }).then(() => {
+        PWCheckRef.current?.focus();
+      });
+      return null;
+    }
+
+    if (1) {
+      swal("good");
+    }
+  };
 
   return (
     <S.WritePostPage>
@@ -25,7 +54,7 @@ const WritePost = () => {
           <S.ContextInput />
         </S.InputDiv>
         <S.ButtonBar>
-          <button>저장하기</button>
+          <button onClick={submit}>저장하기</button>
         </S.ButtonBar>
       </S.WritePost>
     </S.WritePostPage>
