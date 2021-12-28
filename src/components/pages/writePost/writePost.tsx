@@ -3,35 +3,80 @@ import swal from "sweetalert";
 import * as S from "./styled";
 
 const WritePost = () => {
+  interface submitDataType {
+    nickName: string | undefined;
+    PW: string | undefined;
+    PWCheck: string | undefined;
+    title: string | undefined;
+    context: string | undefined;
+  }
+
   const nickNameRef = useRef<HTMLInputElement>(null);
   const PWRef = useRef<HTMLInputElement>(null);
   const PWCheckRef = useRef<HTMLInputElement>(null);
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const contextRef = useRef<HTMLTextAreaElement>(null);
+
+  const checkInput = (submitData: submitDataType) => {
+    const { nickName, PW, PWCheck, title, context } = submitData;
+    if (!nickName) {
+      swal({
+        title: "닉네임을 입력하세요!",
+        icon: "error",
+      });
+      return false;
+    }
+
+    if (!PW || !PWCheck) {
+      swal({
+        title: "비밀번호를 설정해주세요!",
+        icon: "error",
+      });
+      return false;
+    }
+
+    if (PW !== PWCheck) {
+      swal({
+        title: "비밀번호가 같지 않습니다!",
+        icon: "error",
+      }).then(() => {
+        PWCheckRef.current?.focus();
+      });
+      return false;
+    }
+
+    if (!title || !context) {
+      swal({
+        title: "제목과 내용 모두 입력하세요!",
+        icon: "error",
+      });
+      return false;
+    }
+    return true;
+  };
 
   const submit = () => {
     const nickName = nickNameRef.current?.value;
     const PW = PWRef.current?.value;
     const PWCheck = PWCheckRef.current?.value;
 
-    if (!nickName) {
-      swal({
-        title: "닉네임을 입력하세요!",
-        icon: "error",
-      });
-      return null;
-    }
+    const title = titleRef.current?.value;
+    const context = contextRef.current?.value;
 
-    if (PW !== PWCheck) {
-      swal({
-        title: "비밀번호가 같지 않습니다!!",
-        icon: "error",
-      }).then(() => {
-        PWCheckRef.current?.focus();
-      });
-      return null;
-    }
+    const submitData = {
+      nickName,
+      PW,
+      PWCheck,
+      title,
+      context,
+    };
 
-    if (1) {
-      swal("good");
+    if (checkInput(submitData) === false) {
+      console.log("no");
+      return null;
+    } else {
+      console.log(submitData);
     }
   };
 
@@ -47,11 +92,11 @@ const WritePost = () => {
       <S.WritePost>
         <S.InputDiv>
           <S.Label>제목</S.Label>
-          <S.TitleInput />
+          <S.TitleInput ref={titleRef} />
         </S.InputDiv>
         <S.InputDiv>
           <S.Label>내용</S.Label>
-          <S.ContextInput />
+          <S.ContextInput ref={contextRef} />
         </S.InputDiv>
         <S.ButtonBar>
           <button onClick={submit}>저장하기</button>
