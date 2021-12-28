@@ -1,7 +1,11 @@
+import Header from "./components/common/header/Header";
+import WritePost from "./components/pages/writePost/writePost";
+
 function App() {
   return (
     <div>
-      <h1>Secret-Forest</h1>
+      <Header />
+      <WritePost />
     </div>
   );
 }
