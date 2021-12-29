@@ -28,9 +28,27 @@ const WritePost = () => {
       return false;
     }
 
+    if (nickName.length < 2) {
+      swal({
+        title: "닉네임이 너무 짧습니다!",
+        text: "최소 2글자",
+        icon: "error",
+      });
+      return false;
+    }
+
     if (!PW || !PWCheck) {
       swal({
         title: "비밀번호를 설정해주세요!",
+        icon: "error",
+      });
+      return false;
+    }
+
+    if (nickName.length < 2) {
+      swal({
+        title: "비밀번호가 너무 짧습니다!",
+        text: "최소 6글자",
         icon: "error",
       });
       return false;
@@ -98,21 +116,18 @@ const WritePost = () => {
           <S.InfoInput
             ref={nickNameRef}
             placeholder="닉네임"
-            minLength={2}
             maxLength={15}
             onKeyPress={(e) => EnterKey(e, PWRef)}
           />
           <S.InfoInput
             ref={PWRef}
             placeholder="비밀번호"
-            minLength={6}
             maxLength={20}
             onKeyPress={(e) => EnterKey(e, PWCheckRef)}
           />
           <S.InfoInput
             ref={PWCheckRef}
             placeholder="비밀번호 확인"
-            minLength={6}
             maxLength={20}
           />
         </div>
