@@ -80,6 +80,17 @@ const WritePost = () => {
     }
   };
 
+  type eventType = React.KeyboardEvent<HTMLInputElement>;
+  type refType =
+    | React.RefObject<HTMLInputElement>
+    | React.RefObject<HTMLTextAreaElement>;
+
+  const EnterKey = (e: eventType, Ref: refType) => {
+    if (e.key === "Enter") {
+      Ref.current?.focus();
+    }
+  };
+
   return (
     <S.WritePostPage>
       <S.PostInfo>
@@ -89,12 +100,14 @@ const WritePost = () => {
             placeholder="닉네임"
             minLength={2}
             maxLength={15}
+            onKeyPress={(e) => EnterKey(e, PWRef)}
           />
           <S.InfoInput
             ref={PWRef}
             placeholder="비밀번호"
             minLength={6}
             maxLength={20}
+            onKeyPress={(e) => EnterKey(e, PWCheckRef)}
           />
           <S.InfoInput
             ref={PWCheckRef}
@@ -107,7 +120,11 @@ const WritePost = () => {
       <S.WritePost>
         <S.InputDiv>
           <S.Label>제목</S.Label>
-          <S.TitleInput ref={titleRef} maxLength={100} />
+          <S.TitleInput
+            ref={titleRef}
+            maxLength={100}
+            onKeyPress={(e) => EnterKey(e, contextRef)}
+          />
         </S.InputDiv>
         <S.InputDiv>
           <S.Label>내용</S.Label>
