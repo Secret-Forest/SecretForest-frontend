@@ -33,7 +33,7 @@ export const WritePost = styled.section`
 
 export const InfoInput = styled.input`
   background-color: #087f5b;
-  width: 100%;
+  width: 15vw;
   height: 4em;
   outline: none;
   border: none;
