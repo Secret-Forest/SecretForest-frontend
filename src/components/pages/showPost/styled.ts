@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { StyledComponent } from "styled-components";
 
 export const ShowPage = styled.main`
   width: 90vw;
@@ -10,7 +10,7 @@ export const ShowPage = styled.main`
 `;
 
 export const Post = styled.section`
-  width: 80%;
+  width: 70%;
   height: auto;
   /* background-color: blue; */
 
@@ -19,12 +19,14 @@ export const Post = styled.section`
 `;
 
 export const CommentBar = styled.aside`
-  width: 20%;
+  width: 30%;
   height: auto;
-  background-color: yellow;
+  /* background-color: yellow; */
   /* border-left: 1.5px solid #202020; */
 
   border: 1.5px solid #202020;
+
+  overflow-y: auto;
 `;
 
 export const TitleBar = styled.div`
@@ -116,4 +118,41 @@ export const BtnBar = styled.div`
     height: 2.4em;
     cursor: pointer;
   }
+`;
+
+export const Comment = styled.div`
+  margin: 30px;
+
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+  div:first-child {
+    display: flex;
+    align-items: flex-end;
+  }
+`;
+
+type colorType = {
+  profileColor: {
+    R: number;
+    G: number;
+    B: number;
+  };
+};
+export const Profile = styled.div<colorType>`
+  ${({ profileColor }): any =>
+    `background-color: rgb(${profileColor.R}, ${profileColor.G}, ${profileColor.B});`}
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+  margin-right: 0.8em;
+`;
+
+export const NickName = styled.label`
+  font-size: 1.3em;
+`;
+
+export const CommnetData = styled.div`
+  font-size: 1.2em;
+  margin: 10px 0 0 2em;
 `;
