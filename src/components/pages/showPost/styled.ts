@@ -1,4 +1,4 @@
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 
 export const ShowPage = styled.main`
   width: 90vw;
@@ -21,6 +21,18 @@ export const Post = styled.section`
 export const CommentBar = styled.aside`
   width: 30%;
   height: auto;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #314f3e;
+    border-radius: 3.5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 3.5px;
+  }
   /* background-color: yellow; */
   /* border-left: 1.5px solid #202020; */
 
@@ -121,7 +133,7 @@ export const BtnBar = styled.div`
 `;
 
 export const Comment = styled.div`
-  margin: 30px;
+  margin: 20px;
 
   white-space: pre-wrap;
   word-wrap: break-word;
