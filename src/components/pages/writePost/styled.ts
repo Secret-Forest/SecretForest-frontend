@@ -39,8 +39,8 @@ export const InfoInput = styled.input`
   border: none;
 
   color: #d1d1d5;
-  font-size: 1.2em;
-  padding: 0 10px;
+  font-size: 1.3em;
+  padding: 0 0.5em;
 
   &::placeholder {
     color: #d1d1d5;
@@ -68,6 +68,9 @@ export const TitleInput = styled.input`
   border: 1px solid #202020;
   width: 98%;
   height: 8vh;
+
+  font-size: 1.7em;
+  padding: 0 0.5rem;
 `;
 
 export const ContextInput = styled.textarea`
@@ -80,6 +83,8 @@ export const ContextInput = styled.textarea`
   height: 52vh;
 
   resize: none;
+  font-size: 1.5em;
+  padding: 0.5rem;
 `;
 
 export const ButtonBar = styled.div`
