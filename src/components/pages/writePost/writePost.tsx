@@ -24,6 +24,7 @@ const WritePost = () => {
       swal({
         title: "닉네임을 입력하세요!",
         icon: "error",
+        closeOnClickOutside: false,
       });
       return false;
     }
@@ -33,6 +34,7 @@ const WritePost = () => {
         title: "닉네임이 너무 짧습니다!",
         text: "최소 2글자",
         icon: "error",
+        closeOnClickOutside: false,
       });
       return false;
     }
@@ -41,6 +43,7 @@ const WritePost = () => {
       swal({
         title: "비밀번호를 설정해주세요!",
         icon: "error",
+        closeOnClickOutside: false,
       });
       return false;
     }
@@ -50,6 +53,7 @@ const WritePost = () => {
         title: "비밀번호가 너무 짧습니다!",
         text: "최소 6글자",
         icon: "error",
+        closeOnClickOutside: false,
       });
       return false;
     }
@@ -58,6 +62,7 @@ const WritePost = () => {
       swal({
         title: "비밀번호가 같지 않습니다!",
         icon: "error",
+        closeOnClickOutside: false,
       }).then(() => {
         PWCheckRef.current?.focus();
       });
@@ -68,6 +73,7 @@ const WritePost = () => {
       swal({
         title: "제목과 내용 모두 입력하세요!",
         icon: "error",
+        closeOnClickOutside: false,
       });
       return false;
     }
