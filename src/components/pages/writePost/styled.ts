@@ -102,9 +102,9 @@ export const ButtonBar = styled.div`
     color: white;
     font-size: 20px;
     padding: 8px 20px;
-  }
 
-  button:active {
-    transform: scale(0.98);
+    &:active {
+      transform: scale(0.95);
+    }
   }
 `;

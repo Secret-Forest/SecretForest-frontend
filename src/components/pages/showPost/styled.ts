@@ -125,10 +125,18 @@ export const BtnBar = styled.div`
     font-size: 1.4em;
 
     cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
   img {
     height: 2.4em;
     cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 `;
 
