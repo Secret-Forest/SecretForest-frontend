@@ -1,5 +1,7 @@
 import * as S from "./styled";
 import searchBtn from "../../../assets/img/searchBtn.svg";
+import { useRef } from "react";
+import swal from "sweetalert";
 
 const BoardData = [
   {
@@ -43,22 +45,40 @@ const BoardData = [
 ];
 
 const BoardList = () => {
+  const searchKeywordRef = useRef<HTMLInputElement>(null);
+
+  const onSearch = () => {
+    const keyword: string | undefined = searchKeywordRef.current?.value.trim();
+    if (!keyword) {
+      swal({
+        title: "모든 항목을 불러옵니다",
+        icon: "success",
+      });
+    } else {
+      swal({
+        title: `<${keyword}>에 대한 결과입니다`,
+        icon: "success",
+      });
+    }
+  };
+
   return (
     <S.ListPage>
       <S.BoardList>
         {BoardData.map((data) => (
           <S.Board key={data.id}>
-            {/* <div> */}
             <h1>{data.title}</h1>
             <h2>{data.writer}</h2>
-            {/* </div> */}
           </S.Board>
         ))}
       </S.BoardList>
       <S.Search>
         <S.SearchBar>
-          <S.SearchInput placeholder="제목 혹은 닉네임을 입력해주세요." />
-          <img src={searchBtn} alt="검색 버튼" />
+          <S.SearchInput
+            placeholder="제목 혹은 닉네임을 입력해주세요."
+            ref={searchKeywordRef}
+          />
+          <img src={searchBtn} alt="검색 버튼" onClick={onSearch} />
         </S.SearchBar>
         <S.SuggestedSearchTerm></S.SuggestedSearchTerm>
       </S.Search>
