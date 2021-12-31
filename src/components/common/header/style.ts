@@ -5,6 +5,6 @@ export const HeaderLogo = styled.img`
 `;
 export const Header = styled.header`
   background-color: #2c523d;
-  width: 100vw;
-  padding: 5px 0;
+  width: 100%;
+  padding: 0.5vw 0;
 `;
