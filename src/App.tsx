@@ -1,12 +1,15 @@
-import Header from "./components/common/header/Header";
+// import Header from "./components/common/header/Header";
+import AdminMain from "./components/pages/admin/adminMain/AdminMain";
+import AdminHeader from "./components/pages/admin/header/AdminHeaer";
 import BoardList from "./components/pages/boardList/BoardList";
-import ShowPost from "./components/pages/showPost/ShowPost";
-import WritePost from "./components/pages/writePost/writePost";
+// import ShowPost from "./components/pages/showPost/ShowPost";
+// import WritePost from "./components/pages/writePost/writePost";
 
 function App() {
   return (
     <div>
-      <Header />
+      <AdminHeader />
+      <AdminMain />
       <BoardList />
       {/* <WritePost /> */}
       {/* <ShowPost /> */}
