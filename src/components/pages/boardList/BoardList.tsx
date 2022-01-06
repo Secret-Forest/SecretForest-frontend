@@ -53,11 +53,13 @@ const BoardList = () => {
       swal({
         title: "모든 항목을 불러옵니다",
         icon: "success",
+        closeOnClickOutside: false,
       });
     } else {
       swal({
         title: `<${keyword}>에 대한 결과입니다`,
         icon: "success",
+        closeOnClickOutside: false,
       });
     }
   };
