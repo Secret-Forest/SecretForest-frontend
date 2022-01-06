@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import swal from "sweetalert";
+import Header from "../../../common/header/Header";
 import * as S from "./style";
 
 const Login = () => {
@@ -35,23 +36,26 @@ const Login = () => {
   };
 
   return (
-    <S.LoginPage>
-      <S.InputGlub>
-        <S.LoginInput
-          ref={idRef}
-          maxLength={20}
-          type="text"
-          placeholder="Enter your ID"
-        />
-        <S.LoginInput
-          ref={pwRef}
-          maxLength={20}
-          type="password"
-          placeholder="Enter your PW"
-        />
-      </S.InputGlub>
-      <S.LoginBtn onClick={submit}>로그인</S.LoginBtn>
-    </S.LoginPage>
+    <div>
+      <Header />
+      <S.LoginPage>
+        <S.InputGlub>
+          <S.LoginInput
+            ref={idRef}
+            maxLength={20}
+            type="text"
+            placeholder="Enter your ID"
+          />
+          <S.LoginInput
+            ref={pwRef}
+            maxLength={20}
+            type="password"
+            placeholder="Enter your PW"
+          />
+        </S.InputGlub>
+        <S.LoginBtn onClick={submit}>로그인</S.LoginBtn>
+      </S.LoginPage>
+    </div>
   );
 };
 
