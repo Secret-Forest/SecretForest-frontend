@@ -6,7 +6,10 @@ export const HeaderLogo = styled.img`
 export const Header = styled.header`
   background-color: #2c523d;
   width: 100%;
-  padding: 0.5vw 0;
+  height: 60px;
+  padding: 5px 0;
+  display: flex;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -14,5 +17,7 @@ export const Header = styled.header`
 
 export const AdminMark = styled.span`
   color: white;
-  font-size: 20px; ;
+  align-self: flex-end;
+  font-size: 20px;
+  margin: 0 0 5px 10px;
 `;
