@@ -68,7 +68,7 @@ export const ReportBoard = styled.li`
 
   cursor: pointer;
   &:active {
-    transform: scale(1.99);
+    transform: scale(1.01);
   }
 
   h1 {
