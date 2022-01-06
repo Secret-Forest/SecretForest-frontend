@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const LoginPage = styled.main`
   display: grid;
   grid-gap: 30px;
-  margin-top: 70px;
   justify-items: center;
   align-items: center;
   height: 49rem;

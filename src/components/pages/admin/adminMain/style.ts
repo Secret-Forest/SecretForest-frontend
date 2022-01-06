@@ -6,13 +6,13 @@ export const MainPage = styled.main`
   align-items: center;
   justify-items: center;
   grid-gap: 1rem;
+  margin-top: 50px;
 `;
 
 export const ListSection = styled.section`
   /* background-color: red; */
   height: 40rem;
   width: 25rem;
-  margin-top: 150px;
 `;
 
 export const SectionTitle = styled.div`
