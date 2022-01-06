@@ -1,4 +1,3 @@
-import { ShowPage } from "./../../showPost/styled";
 import styled from "styled-components";
 //384B3C
 export const MainPage = styled.main`
