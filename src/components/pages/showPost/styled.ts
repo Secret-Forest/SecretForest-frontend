@@ -4,7 +4,7 @@ export const ShowPage = styled.main`
   width: 90vw;
   margin: 30px auto 0 auto;
   /* background-color: red; */
-  height: 50rem;
+  height: 45rem;
 
   display: flex;
 `;
