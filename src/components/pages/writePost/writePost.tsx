@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import Swal from "sweetalert2";
-import Header from "../../common/header/Header";
 import * as S from "./styled";
 
 const WritePost = () => {
@@ -117,49 +116,46 @@ const WritePost = () => {
   };
 
   return (
-    <>
-      <Header />
-      <S.WritePostPage>
-        <S.PostInfo>
-          <div>
-            <S.InfoInput
-              ref={nickNameRef}
-              placeholder="닉네임"
-              maxLength={15}
-              onKeyPress={(e) => EnterKey(e, PWRef)}
-            />
-            <S.InfoInput
-              ref={PWRef}
-              placeholder="비밀번호"
-              maxLength={20}
-              onKeyPress={(e) => EnterKey(e, PWCheckRef)}
-            />
-            <S.InfoInput
-              ref={PWCheckRef}
-              placeholder="비밀번호 확인"
-              maxLength={20}
-            />
-          </div>
-        </S.PostInfo>
-        <S.WritePost>
-          <S.InputDiv>
-            <S.Label>제목</S.Label>
-            <S.TitleInput
-              ref={titleRef}
-              maxLength={100}
-              onKeyPress={(e) => EnterKey(e, contextRef)}
-            />
-          </S.InputDiv>
-          <S.InputDiv>
-            <S.Label>내용</S.Label>
-            <S.ContextInput ref={contextRef} maxLength={2000} />
-          </S.InputDiv>
-          <S.ButtonBar>
-            <button onClick={submit}>저장하기</button>
-          </S.ButtonBar>
-        </S.WritePost>
-      </S.WritePostPage>
-    </>
+    <S.WritePostPage>
+      <S.PostInfo>
+        <div>
+          <S.InfoInput
+            ref={nickNameRef}
+            placeholder="닉네임"
+            maxLength={15}
+            onKeyPress={(e) => EnterKey(e, PWRef)}
+          />
+          <S.InfoInput
+            ref={PWRef}
+            placeholder="비밀번호"
+            maxLength={20}
+            onKeyPress={(e) => EnterKey(e, PWCheckRef)}
+          />
+          <S.InfoInput
+            ref={PWCheckRef}
+            placeholder="비밀번호 확인"
+            maxLength={20}
+          />
+        </div>
+      </S.PostInfo>
+      <S.WritePost>
+        <S.InputDiv>
+          <S.Label>제목</S.Label>
+          <S.TitleInput
+            ref={titleRef}
+            maxLength={100}
+            onKeyPress={(e) => EnterKey(e, contextRef)}
+          />
+        </S.InputDiv>
+        <S.InputDiv>
+          <S.Label>내용</S.Label>
+          <S.ContextInput ref={contextRef} maxLength={2000} />
+        </S.InputDiv>
+        <S.ButtonBar>
+          <button onClick={submit}>저장하기</button>
+        </S.ButtonBar>
+      </S.WritePost>
+    </S.WritePostPage>
   );
 };
 

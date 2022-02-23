@@ -1,6 +1,5 @@
 import * as S from "./style";
 import report from "../../../../assets/img/report.png";
-import Header from "../../../common/header/Header";
 
 const BoardData = [
   {
@@ -45,50 +44,47 @@ const BoardData = [
 
 const AdminMain = () => {
   return (
-    <div>
-      <Header />
-      <S.MainPage>
-        <S.ListSection>
-          <S.SectionTitle>검열해야하는 게시물</S.SectionTitle>
-          <S.List>
-            {BoardData.map((data) => (
-              <S.ReportBoard key={data.id}>
-                <h1>{data.title}</h1>
-                <h2>{data.writer}</h2>
-              </S.ReportBoard>
-            ))}
-          </S.List>
-        </S.ListSection>
-        <S.ListSection>
-          <S.SectionTitle>
-            신고된 게시물
-            <img src={report} alt="신고된 게시물" />
-          </S.SectionTitle>
-          <S.List>
-            {BoardData.map((data) => (
-              <S.ReportBoard key={data.id}>
-                <h1>{data.title}</h1>
-                <h2>{data.writer}</h2>
-              </S.ReportBoard>
-            ))}
-          </S.List>
-        </S.ListSection>
-        <S.ListSection>
-          <S.SectionTitle>
-            신고된 댓글
-            <img src={report} alt="신고된 댓글" />
-          </S.SectionTitle>
-          <S.List>
-            {BoardData.map((data) => (
-              <S.ReportBoard key={data.id}>
-                <h1>{data.title}</h1>
-                <h2>{data.writer}</h2>
-              </S.ReportBoard>
-            ))}
-          </S.List>
-        </S.ListSection>
-      </S.MainPage>
-    </div>
+    <S.MainPage>
+      <S.ListSection>
+        <S.SectionTitle>검열해야하는 게시물</S.SectionTitle>
+        <S.List>
+          {BoardData.map((data) => (
+            <S.ReportBoard key={data.id}>
+              <h1>{data.title}</h1>
+              <h2>{data.writer}</h2>
+            </S.ReportBoard>
+          ))}
+        </S.List>
+      </S.ListSection>
+      <S.ListSection>
+        <S.SectionTitle>
+          신고된 게시물
+          <img src={report} alt="신고된 게시물" />
+        </S.SectionTitle>
+        <S.List>
+          {BoardData.map((data) => (
+            <S.ReportBoard key={data.id}>
+              <h1>{data.title}</h1>
+              <h2>{data.writer}</h2>
+            </S.ReportBoard>
+          ))}
+        </S.List>
+      </S.ListSection>
+      <S.ListSection>
+        <S.SectionTitle>
+          신고된 댓글
+          <img src={report} alt="신고된 댓글" />
+        </S.SectionTitle>
+        <S.List>
+          {BoardData.map((data) => (
+            <S.ReportBoard key={data.id}>
+              <h1>{data.title}</h1>
+              <h2>{data.writer}</h2>
+            </S.ReportBoard>
+          ))}
+        </S.List>
+      </S.ListSection>
+    </S.MainPage>
   );
 };
 
