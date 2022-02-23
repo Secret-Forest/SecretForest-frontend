@@ -3,6 +3,7 @@ import searchBtn from "../../../assets/img/searchBtn.svg";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import Request from "../../../api/axios";
+import { Link } from "react-router-dom";
 
 interface BoardDataType {
   id: number;
@@ -44,10 +45,16 @@ const BoardList = () => {
     <S.ListPage>
       <S.BoardList>
         {BoardData.map((data) => (
-          <S.Board key={data.id}>
-            <h1>{data.title}</h1>
-            <h2>{data.writer}</h2>
-          </S.Board>
+          <Link
+            key={data.id}
+            to={`${data.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <S.Board>
+              <h1>{data.title}</h1>
+              <h2>{data.writer}</h2>
+            </S.Board>
+          </Link>
         ))}
       </S.BoardList>
       <S.Search>
