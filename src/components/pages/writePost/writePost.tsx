@@ -1,14 +1,15 @@
 import { useRef } from "react";
 import Swal from "sweetalert2";
+import Request from "../../../api/axios";
 import * as S from "./styled";
 
 const WritePost = () => {
   interface submitDataType {
-    nickName: string | undefined;
-    PW: string | undefined;
-    PWCheck: string | undefined;
+    writer: string | undefined;
+    password: string | undefined;
+    PWCheck?: string | undefined;
     title: string | undefined;
-    context: string | undefined;
+    content: string | undefined;
   }
 
   const nickNameRef = useRef<HTMLInputElement>(null);
@@ -19,8 +20,8 @@ const WritePost = () => {
   const contextRef = useRef<HTMLTextAreaElement>(null);
 
   const checkInput = (submitData: submitDataType) => {
-    const { nickName, PW, PWCheck, title, context } = submitData;
-    if (!nickName) {
+    const { writer, password, PWCheck, title, content } = submitData;
+    if (!writer) {
       Swal.fire({
         title: "닉네임을 입력하세요!",
         icon: "error",
@@ -29,7 +30,7 @@ const WritePost = () => {
       return false;
     }
 
-    if (nickName.length < 2) {
+    if (writer.length < 2) {
       Swal.fire({
         title: "닉네임이 너무 짧습니다!",
         text: "최소 2글자",
@@ -39,7 +40,7 @@ const WritePost = () => {
       return false;
     }
 
-    if (!PW || !PWCheck) {
+    if (!password || !PWCheck) {
       Swal.fire({
         title: "비밀번호를 설정해주세요!",
         icon: "error",
@@ -48,7 +49,7 @@ const WritePost = () => {
       return false;
     }
 
-    if (nickName.length < 2) {
+    if (password.length < 6) {
       Swal.fire({
         title: "비밀번호가 너무 짧습니다!",
         text: "최소 6글자",
@@ -58,7 +59,7 @@ const WritePost = () => {
       return false;
     }
 
-    if (PW !== PWCheck) {
+    if (password !== PWCheck) {
       Swal.fire({
         title: "비밀번호가 같지 않습니다!",
         icon: "error",
@@ -69,7 +70,7 @@ const WritePost = () => {
       return false;
     }
 
-    if (!title || !context) {
+    if (!title || !content) {
       Swal.fire({
         title: "제목과 내용 모두 입력하세요!",
         icon: "error",
@@ -81,26 +82,25 @@ const WritePost = () => {
   };
 
   const submit = () => {
-    const nickName = nickNameRef.current?.value;
-    const PW = PWRef.current?.value;
+    const writer = nickNameRef.current?.value;
+    const password = PWRef.current?.value;
     const PWCheck = PWCheckRef.current?.value;
 
     const title = titleRef.current?.value;
-    const context = contextRef.current?.value;
+    const content = contextRef.current?.value;
 
-    const submitData = {
-      nickName,
-      PW,
-      PWCheck,
+    const submitData: submitDataType = {
+      content,
+      password,
       title,
-      context,
+      writer,
     };
 
-    if (checkInput(submitData) === false) {
-      console.log("no");
+    if (checkInput({ ...submitData, PWCheck }) === false) {
       return null;
     } else {
       console.log(submitData);
+      Request("board", "post", submitData);
     }
   };
 
