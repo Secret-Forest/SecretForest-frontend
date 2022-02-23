@@ -106,7 +106,9 @@ const ShowPost = () => {
       title: "비밀번호를 입력하세요",
       input: "text",
       allowOutsideClick: false,
-    }).then((PW: SweetAlertResult<any>) => {});
+    }).then((PW: SweetAlertResult<any>) => {
+      Request(`board/${id}`, "delete");
+    });
   };
 
   const onReport = () => {

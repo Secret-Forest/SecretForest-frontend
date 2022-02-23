@@ -19,7 +19,7 @@ const BoardList = () => {
   const [BoardData, setBoardData] = useState<BoardDataStateType>([]);
 
   useEffect(() => {
-    Request("", "get", {}).then((res) => {
+    Request("", "get").then((res) => {
       setBoardData(res.postViewDtoList);
     });
   }, []);

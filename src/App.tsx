@@ -14,7 +14,7 @@ function App() {
         <Route path="/*" element={<Header />}>
           <Route element={<BoardList />} path="" />
           <Route element={<WritePost />} path="write" />
-          <Route element={<ShowPost />} path="show" />
+          <Route element={<ShowPost />} path=":id" />
         </Route>
         <Route path="/admin" element={<AdminHeader />}>
           <Route element={<AdminMain />} path="" />
