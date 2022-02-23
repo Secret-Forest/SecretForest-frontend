@@ -1,7 +1,6 @@
 import * as S from "./styled";
 import report from "../../../assets/img/report.png";
-import swal from "sweetalert";
-import { getContentOpts } from "sweetalert/typings/modules/options/content";
+import Swal, { SweetAlertResult } from "sweetalert2";
 import Header from "../../common/header/Header";
 
 const commentTestData = [
@@ -64,27 +63,30 @@ const commentTestData = [
 안경 쓴 샌님이니까`,
   },
 ];
+
 const ShowPost = () => {
   const onPutch = () => {
-    swal("비밀번호를 입력하세요", {
-      content: "input",
-      closeOnClickOutside: false,
-    }).then((PW) => {
+    Swal.fire({
+      title: "비밀번호를 입력하세요",
+      allowOutsideClick: false,
+      input: "text",
+    }).then((PW: SweetAlertResult<any>) => {
       console.log(PW);
     });
   };
 
   const onDelete = () => {
-    swal("비밀번호를 입력하세요", {
-      content: "input",
-      closeOnClickOutside: false,
-    }).then((PW) => {
+    Swal.fire({
+      title: "비밀번호를 입력하세요",
+      input: "text",
+      allowOutsideClick: false,
+    }).then((PW: SweetAlertResult<any>) => {
       console.log(PW);
     });
   };
 
   const onReport = () => {
-    swal({
+    Swal.fire({
       text: "해당 게시물이 신고되었습니다",
     });
   };

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 import Header from "../../common/header/Header";
 import * as S from "./styled";
 
@@ -22,48 +22,48 @@ const WritePost = () => {
   const checkInput = (submitData: submitDataType) => {
     const { nickName, PW, PWCheck, title, context } = submitData;
     if (!nickName) {
-      swal({
+      Swal.fire({
         title: "닉네임을 입력하세요!",
         icon: "error",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
       return false;
     }
 
     if (nickName.length < 2) {
-      swal({
+      Swal.fire({
         title: "닉네임이 너무 짧습니다!",
         text: "최소 2글자",
         icon: "error",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
       return false;
     }
 
     if (!PW || !PWCheck) {
-      swal({
+      Swal.fire({
         title: "비밀번호를 설정해주세요!",
         icon: "error",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
       return false;
     }
 
     if (nickName.length < 2) {
-      swal({
+      Swal.fire({
         title: "비밀번호가 너무 짧습니다!",
         text: "최소 6글자",
         icon: "error",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
       return false;
     }
 
     if (PW !== PWCheck) {
-      swal({
+      Swal.fire({
         title: "비밀번호가 같지 않습니다!",
         icon: "error",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       }).then(() => {
         PWCheckRef.current?.focus();
       });
@@ -71,10 +71,10 @@ const WritePost = () => {
     }
 
     if (!title || !context) {
-      swal({
+      Swal.fire({
         title: "제목과 내용 모두 입력하세요!",
         icon: "error",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
       return false;
     }
@@ -117,7 +117,7 @@ const WritePost = () => {
   };
 
   return (
-    <div>
+    <>
       <Header />
       <S.WritePostPage>
         <S.PostInfo>
@@ -159,7 +159,7 @@ const WritePost = () => {
           </S.ButtonBar>
         </S.WritePost>
       </S.WritePostPage>
-    </div>
+    </>
   );
 };
 

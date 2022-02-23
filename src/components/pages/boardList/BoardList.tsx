@@ -1,7 +1,7 @@
 import * as S from "./styled";
 import searchBtn from "../../../assets/img/searchBtn.svg";
 import { useRef } from "react";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 import Header from "../../common/header/Header";
 
 const BoardData = [
@@ -51,16 +51,16 @@ const BoardList = () => {
   const onSearch = () => {
     const keyword: string | undefined = searchKeywordRef.current?.value.trim();
     if (!keyword) {
-      swal({
+      Swal.fire({
         title: "모든 항목을 불러옵니다",
         icon: "success",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
     } else {
-      swal({
+      Swal.fire({
         title: `<${keyword}>에 대한 결과입니다`,
         icon: "success",
-        closeOnClickOutside: false,
+        allowOutsideClick: false,
       });
     }
   };
