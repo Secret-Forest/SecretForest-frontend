@@ -5,31 +5,36 @@ import { useEffect, useState } from "react";
 import Request from "../../../api/axios";
 import { Params, useParams } from "react-router-dom";
 
+interface commentArrayType {
+  id: number;
+  comment: string;
+  writer: string;
+}
+
 interface boardDataType {
   id: number;
   title: string;
   content: string;
   writer: string;
-  commentsPostResponses: [
-    {
-      id: number;
-      comment: string;
-      writer: string;
-    }
-  ];
+  commentsPostResponses: [commentArrayType];
 }
 
 const ShowPost = () => {
   const { id }: Readonly<Params<string>> = useParams();
   const [boardData, setBoardData] = useState<boardDataType | null>(null);
+  const [commentData, setCommentData] = useState<commentArrayType[]>([]);
 
   useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
     Request(`board/${id}`, "get").then((res) => {
       console.log(res);
       setBoardData(res);
+      setCommentData(res.commentsPostResponses);
     });
-  }, []);
-
+  };
   const onPutch = () => {
     Swal.fire({
       title: "비밀번호를 입력하세요",
@@ -71,8 +76,6 @@ const ShowPost = () => {
     comment: string;
   }
 
-  const [commentData, setCommentData] = useState([]);
-
   const onSubmitComment = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const { value: commentWriter }: SweetAlertResult<string> =
@@ -95,15 +98,11 @@ const ShowPost = () => {
         comment,
       };
 
-      Request(`comment/${id}`, "post", commentWriterData);
+      Request(`comment/${id}`, "post", commentWriterData).then(() => {
+        getData();
+      });
     }
   };
-
-  interface commentObj {
-    comment: string;
-    password: string;
-    writer: string;
-  }
 
   return (
     <S.ShowPage>
@@ -123,7 +122,7 @@ const ShowPost = () => {
       </S.Post>
       <S.CommentBar>
         <S.Over>
-          {commentData.map((Comment: commentObj, index: number) => {
+          {commentData.map((Comment: commentArrayType, index: number) => {
             const color = {
               R: Math.floor(Math.random() * 256),
               G: Math.floor(Math.random() * 256),
