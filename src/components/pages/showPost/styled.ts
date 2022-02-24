@@ -4,7 +4,7 @@ export const ShowPage = styled.main`
   width: 90vw;
   margin: 30px auto 0 auto;
   /* background-color: red; */
-  height: 45rem;
+  height: 35rem;
 
   display: flex;
 `;
@@ -22,6 +22,17 @@ export const CommentBar = styled.aside`
   width: 30%;
   height: auto;
 
+  /* background-color: yellow; */
+  /* border-left: 1.5px solid #202020; */
+
+  border: 1.5px solid #202020;
+  overflow-y: auto;
+`;
+
+export const Over = styled.div`
+  width: 100%;
+  height: 30rem;
+  overflow-y: auto;
   &::-webkit-scrollbar {
     width: 7px;
   }
@@ -33,12 +44,6 @@ export const CommentBar = styled.aside`
     background-color: grey;
     border-radius: 3.5px;
   }
-  /* background-color: yellow; */
-  /* border-left: 1.5px solid #202020; */
-
-  border: 1.5px solid #202020;
-
-  overflow-y: auto;
 `;
 
 export const TitleBar = styled.div`
@@ -175,4 +180,17 @@ export const NickName = styled.label`
 export const CommnetData = styled.div`
   font-size: 1.2em;
   margin: 10px 0 0 2em;
+`;
+
+export const CommentInput = styled.input`
+  width: 85%;
+  margin: 10px 3%;
+  border-radius: 25px;
+  outline: none;
+  padding-left: 20px;
+  font-size: 18px;
+  height: 40px;
+  /* position: absolute; */
+  top: 100px;
+  left: 0;
 `;

@@ -5,67 +5,6 @@ import { useEffect, useState } from "react";
 import Request from "../../../api/axios";
 import { Params, useParams } from "react-router-dom";
 
-const commentTestData = [
-  {
-    id: 1,
-    nickName: "자퇴각",
-    text: "그렇구나 그럴 수 있지",
-  },
-  {
-    id: 2,
-    nickName: "눈 딱 감고",
-    text: "말했잖아 언젠가 그런 날이 온다면 난 널 혼자 내버려 두지 않을거라고",
-  },
-
-  {
-    id: 3,
-    nickName: "나도 알아",
-    text: `나의 문제가 무엇인지 난 못났고
-별볼일 없지 그에가 나를 부끄러워 한다는게 슬프지만 내가 뭐라고
-빛나는 누군갈 좋아하는 일에 기준이 있는거라면 이해할 순 없지만 할말 없는 난
-안경 쓴 샌님이니까`,
-  },
-  {
-    id: 4,
-    nickName: "자퇴각",
-    text: `그렇구나 
-그럴 수 있지`,
-  },
-  {
-    id: 5,
-    nickName: "자퇴각",
-    text: "그렇구나 그럴 수 있지",
-  },
-  {
-    id: 6,
-    nickName: "자퇴각",
-    text: "그렇구나 그럴 수 있지",
-  },
-  {
-    id: 7,
-    nickName: "자퇴각",
-    text: "그렇구나 그럴 수 있지",
-  },
-  {
-    id: 8,
-    nickName: "자퇴각",
-    text: "그렇구나 그럴 수 있지",
-  },
-  {
-    id: 9,
-    nickName: "자퇴각",
-    text: "그렇구나 그럴 수 있지",
-  },
-  {
-    id: 10,
-    nickName: "나도 알아",
-    text: `나의 문제가 무엇인지 난 못났고
-별볼일 없지 그에가 나를 부끄러워 한다는게 슬프지만 내가 뭐라고
-빛나는 누군갈 좋아하는 일에 기준이 있는거라면 이해할 순 없지만 할말 없는 난
-안경 쓴 샌님이니까`,
-  },
-];
-
 interface boardDataType {
   id: number;
   title: string;
@@ -107,15 +46,64 @@ const ShowPost = () => {
       input: "text",
       allowOutsideClick: false,
     }).then((PW: SweetAlertResult<any>) => {
-      Request(`board/${id}`, "delete");
+      const { value }: { value?: string } = PW;
+      if (value) {
+        Request(`board/${id}`, "delete", { password: value });
+      }
     });
   };
 
   const onReport = () => {
     Swal.fire({
       text: "해당 게시물이 신고되었습니다",
+      allowOutsideClick: false,
     });
   };
+
+  const [comment, setComment] = useState<string>("");
+  const changeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  interface commentWriterDataType {
+    writer: string | undefined;
+    password: string | undefined;
+    comment: string;
+  }
+
+  const [commentData, setCommentData] = useState([]);
+
+  const onSubmitComment = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const { value: commentWriter }: SweetAlertResult<string> =
+        await Swal.fire({
+          title: "표시될 이름을 입력하세요",
+          input: "text",
+          allowOutsideClick: false,
+        });
+
+      const { value: commentPassword }: SweetAlertResult<string> =
+        await Swal.fire({
+          title: "비밀번호를 설정해주세요",
+          input: "password",
+          allowOutsideClick: false,
+        });
+
+      const commentWriterData: commentWriterDataType = {
+        writer: commentWriter,
+        password: commentPassword,
+        comment,
+      };
+
+      Request(`comment/${id}`, "post", commentWriterData);
+    }
+  };
+
+  interface commentObj {
+    comment: string;
+    password: string;
+    writer: string;
+  }
 
   return (
     <S.ShowPage>
@@ -134,22 +122,29 @@ const ShowPost = () => {
         <S.PostContext>{boardData?.content}</S.PostContext>
       </S.Post>
       <S.CommentBar>
-        {commentTestData.map((Comment) => {
-          const color = {
-            R: Math.floor(Math.random() * 256),
-            G: Math.floor(Math.random() * 256),
-            B: Math.floor(Math.random() * 256),
-          };
-          return (
-            <S.Comment key={Comment.id}>
-              <div>
-                <S.Profile profileColor={color}></S.Profile>
-                <S.NickName>{Comment.nickName}</S.NickName>
-              </div>
-              <S.CommnetData>{Comment.text}</S.CommnetData>
-            </S.Comment>
-          );
-        })}
+        <S.Over>
+          {commentData.map((Comment: commentObj, index: number) => {
+            const color = {
+              R: Math.floor(Math.random() * 256),
+              G: Math.floor(Math.random() * 256),
+              B: Math.floor(Math.random() * 256),
+            };
+            return (
+              <S.Comment key={index}>
+                <div>
+                  <S.Profile profileColor={color}></S.Profile>
+                  <S.NickName>{Comment?.writer}</S.NickName>
+                </div>
+                <S.CommnetData>{Comment?.comment}</S.CommnetData>
+              </S.Comment>
+            );
+          })}
+        </S.Over>
+        <S.CommentInput
+          value={comment}
+          onChange={changeComment}
+          onKeyPress={onSubmitComment}
+        />
       </S.CommentBar>
     </S.ShowPage>
   );
