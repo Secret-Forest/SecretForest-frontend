@@ -4,6 +4,7 @@ import Swal, { SweetAlertResult } from "sweetalert2";
 import { useEffect, useState } from "react";
 import Request from "../../../api/axios";
 import { Params, useParams } from "react-router-dom";
+import axios, { AxiosRequestConfig } from "axios";
 
 interface commentArrayType {
   id: number;
@@ -30,18 +31,29 @@ const ShowPost = () => {
 
   const getData = () => {
     Request(`board/${id}`, "get").then((res) => {
-      console.log(res);
+      // console.log(res);
       setBoardData(res);
       setCommentData(res.commentsPostResponses);
     });
   };
-  const onPutch = () => {
-    Swal.fire({
-      title: "비밀번호를 입력하세요",
-      allowOutsideClick: false,
-      input: "text",
-    }).then((PW: SweetAlertResult<any>) => {
-      console.log(PW);
+  const onPutch = async () => {
+    // const { value }: SweetAlertResult<string> = await Swal.fire({
+    //   title: "비밀번호를 입력하세요",
+    //   allowOutsideClick: false,
+    //   input: "text",
+    // });
+
+    // console.log(typeof value);
+    const matchPW: any = { password: "12345677777" };
+    console.log(matchPW);
+
+    // Request(`match/post/${id}`, "get", matchPW);
+    axios.request({
+      url: "http://13.209.58.38:8080/match/post/4",
+      method: "GET",
+      data: {
+        password: "1234567",
+      },
     });
   };
 
@@ -59,9 +71,18 @@ const ShowPost = () => {
   };
 
   const onReport = () => {
-    Swal.fire({
+    Request(`report/board/${id}`, "put");
+    const Toast = Swal.mixin({
+      toast: true,
+      showConfirmButton: false,
+      position: "top-end",
+      timer: 3000,
+      timerProgressBar: true,
+    });
+
+    Toast.fire({
       text: "해당 게시물이 신고되었습니다",
-      allowOutsideClick: false,
+      icon: "success",
     });
   };
 
