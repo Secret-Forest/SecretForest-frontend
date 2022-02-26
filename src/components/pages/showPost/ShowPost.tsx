@@ -1,10 +1,9 @@
 import * as S from "./styled";
-import report from "../../../assets/img/report.png";
+// import report from "../../../assets/image/report.png";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import { useEffect, useState } from "react";
 import Request from "../../../api/axios";
 import { Params, useParams } from "react-router-dom";
-import axios from "axios";
 
 interface commentArrayType {
   id: number;
@@ -127,7 +126,7 @@ const ShowPost = () => {
           <S.BtnBar>
             <button onClick={onPatch}>수정</button>
             <button onClick={onDelete}>삭제</button>
-            <img src={report} alt="신고 버튼" onClick={onReport} />
+            <img src="image/report.png" alt="신고 버튼" onClick={onReport} />
           </S.BtnBar>
         </S.TitleBar>
         <S.PostContext>{boardData?.content}</S.PostContext>
