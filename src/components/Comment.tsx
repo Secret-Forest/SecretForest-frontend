@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import Request from "../api/axios";
 import { commentArrayType } from "../interface/showPost";
@@ -23,10 +23,14 @@ interface commentWriterDataType {
 }
 
 const Comment = ({ commentData, id, getData }: props) => {
-  const color: colorObj = {
-    R: Math.floor(Math.random() * 256),
-    G: Math.floor(Math.random() * 256),
-    B: Math.floor(Math.random() * 256),
+  const randomColor = (): colorObj => {
+    const color: colorObj = {
+      R: Math.floor(Math.random() * 256),
+      G: Math.floor(Math.random() * 256),
+      B: Math.floor(Math.random() * 256),
+    };
+
+    return color;
   };
 
   const [comment, setComment] = useState<string>("");
@@ -69,7 +73,7 @@ const Comment = ({ commentData, id, getData }: props) => {
         {commentData.map((CommentArray: commentArrayType, index: number) => (
           <S.Comment key={index}>
             <div>
-              <S.Profile profileColor={color}></S.Profile>
+              <S.Profile profileColor={randomColor()}></S.Profile>
               <S.NickName>{CommentArray?.writer}</S.NickName>
             </div>
             <S.CommnetData>{CommentArray?.comment}</S.CommnetData>
