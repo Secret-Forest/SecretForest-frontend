@@ -1,15 +1,10 @@
 import * as S from "../styles/showPost";
-// import report from "../../../assets/image/report.png";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import { useEffect, useState } from "react";
 import Request from "../api/axios";
 import { Params, useParams } from "react-router-dom";
-
-interface commentArrayType {
-  id: number;
-  comment: string;
-  writer: string;
-}
+import Comment from "../components/Comment";
+import { commentArrayType } from "../interface/showPost";
 
 interface boardDataType {
   id: number;
@@ -28,9 +23,8 @@ const ShowPost = () => {
     getData();
   }, []);
 
-  const getData = () => {
+  const getData = (): void => {
     Request(`board/${id}`, "get").then((res) => {
-      // console.log(res);
       setBoardData(res);
       setCommentData(res.commentsPostResponses);
     });
@@ -76,45 +70,6 @@ const ShowPost = () => {
     });
   };
 
-  const [comment, setComment] = useState<string>("");
-  const changeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value);
-  };
-
-  interface commentWriterDataType {
-    writer: string | undefined;
-    password: string | undefined;
-    comment: string;
-  }
-
-  const onSubmitComment = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      const { value: commentWriter }: SweetAlertResult<string> =
-        await Swal.fire({
-          title: "표시될 이름을 입력하세요",
-          input: "text",
-          allowOutsideClick: false,
-        });
-
-      const { value: commentPassword }: SweetAlertResult<string> =
-        await Swal.fire({
-          title: "비밀번호를 설정해주세요",
-          input: "password",
-          allowOutsideClick: false,
-        });
-
-      const commentWriterData: commentWriterDataType = {
-        writer: commentWriter,
-        password: commentPassword,
-        comment,
-      };
-
-      Request(`comment/${id}`, "post", commentWriterData).then(() => {
-        getData();
-      });
-    }
-  };
-
   return (
     <S.ShowPage>
       <S.Post>
@@ -131,31 +86,7 @@ const ShowPost = () => {
         </S.TitleBar>
         <S.PostContext>{boardData?.content}</S.PostContext>
       </S.Post>
-      <S.CommentBar>
-        <S.Over>
-          {commentData.map((Comment: commentArrayType, index: number) => {
-            const color = {
-              R: Math.floor(Math.random() * 256),
-              G: Math.floor(Math.random() * 256),
-              B: Math.floor(Math.random() * 256),
-            };
-            return (
-              <S.Comment key={index}>
-                <div>
-                  <S.Profile profileColor={color}></S.Profile>
-                  <S.NickName>{Comment?.writer}</S.NickName>
-                </div>
-                <S.CommnetData>{Comment?.comment}</S.CommnetData>
-              </S.Comment>
-            );
-          })}
-        </S.Over>
-        <S.CommentInput
-          value={comment}
-          onChange={changeComment}
-          onKeyPress={onSubmitComment}
-        />
-      </S.CommentBar>
+      <Comment commentData={commentData} id={id ?? ""} getData={getData} />
     </S.ShowPage>
   );
 };
