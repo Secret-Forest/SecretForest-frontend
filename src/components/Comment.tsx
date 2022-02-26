@@ -67,7 +67,7 @@ const Comment = ({ commentData, id, getData }: props) => {
     <S.CommentBar>
       <S.Over>
         {commentData.map((CommentArray: commentArrayType, index: number) => (
-          <S.Comment>
+          <S.Comment key={index}>
             <div>
               <S.Profile profileColor={color}></S.Profile>
               <S.NickName>{CommentArray?.writer}</S.NickName>
