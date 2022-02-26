@@ -70,7 +70,6 @@ export const CommentInput = styled.input`
   padding-left: 20px;
   font-size: 18px;
   height: 40px;
-  /* position: absolute; */
   top: 100px;
   left: 0;
 `;
