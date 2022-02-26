@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import Request from "../api/axios";
 import { commentArrayType } from "../interface/showPost";
@@ -17,8 +17,8 @@ interface colorObj {
 }
 
 interface commentWriterDataType {
-  writer: string | undefined;
-  password: string | undefined;
+  writer: string;
+  password: string;
   comment: string;
 }
 
@@ -55,6 +55,21 @@ const Comment = ({ commentData, id, getData }: props) => {
           allowOutsideClick: false,
         });
 
+      if (!commentWriter || !commentPassword) {
+        const Toast = Swal.mixin({
+          toast: true,
+          showConfirmButton: false,
+          position: "top-end",
+          timer: 3000,
+          timerProgressBar: true,
+        });
+
+        Toast.fire({
+          text: `이름과 비밀번호를 모두 설정해야만 댓글을 작성할 수 있습니다!!`,
+          icon: "error",
+        });
+        return;
+      }
       const commentWriterData: commentWriterDataType = {
         writer: commentWriter,
         password: commentPassword,
