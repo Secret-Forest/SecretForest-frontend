@@ -122,6 +122,7 @@ const WritePost = () => {
           <S.InfoInput
             ref={nickNameRef}
             placeholder="닉네임"
+            type="text"
             maxLength={15}
             onKeyPress={(e) => EnterKey(e, PWRef)}
           />
@@ -129,10 +130,12 @@ const WritePost = () => {
             ref={PWRef}
             placeholder="비밀번호"
             maxLength={20}
+            type="password"
             onKeyPress={(e) => EnterKey(e, PWCheckRef)}
           />
           <S.InfoInput
             ref={PWCheckRef}
+            type="password"
             placeholder="비밀번호 확인"
             maxLength={20}
           />
