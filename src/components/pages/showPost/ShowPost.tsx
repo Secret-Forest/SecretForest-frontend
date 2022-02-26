@@ -4,7 +4,7 @@ import Swal, { SweetAlertResult } from "sweetalert2";
 import { useEffect, useState } from "react";
 import Request from "../../../api/axios";
 import { Params, useParams } from "react-router-dom";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 interface commentArrayType {
   id: number;
@@ -36,31 +36,22 @@ const ShowPost = () => {
       setCommentData(res.commentsPostResponses);
     });
   };
-  const onPutch = async () => {
-    // const { value }: SweetAlertResult<string> = await Swal.fire({
-    //   title: "비밀번호를 입력하세요",
-    //   allowOutsideClick: false,
-    //   input: "text",
-    // });
-
-    // console.log(typeof value);
-    const matchPW: any = { password: "12345677777" };
-    console.log(matchPW);
-
-    // Request(`match/post/${id}`, "get", matchPW);
-    axios.request({
-      url: "http://13.209.58.38:8080/match/post/4",
-      method: "GET",
-      data: {
-        password: "1234567",
-      },
+  const onPatch = async () => {
+    const { value }: SweetAlertResult<string> = await Swal.fire({
+      title: "비밀번호를 입력하세요",
+      allowOutsideClick: false,
+      input: "text",
     });
+
+    const data = await Request(`match/post/${id}`, "post", { password: value });
+
+    console.log(data === "");
   };
 
   const onDelete = () => {
     Swal.fire({
       title: "비밀번호를 입력하세요",
-      input: "text",
+      input: "password",
       allowOutsideClick: false,
     }).then((PW: SweetAlertResult<any>) => {
       const { value }: { value?: string } = PW;
@@ -134,7 +125,7 @@ const ShowPost = () => {
             <S.Writer>{boardData?.writer}</S.Writer>
           </S.TitleDiv>
           <S.BtnBar>
-            <button onClick={onPutch}>수정</button>
+            <button onClick={onPatch}>수정</button>
             <button onClick={onDelete}>삭제</button>
             <img src={report} alt="신고 버튼" onClick={onReport} />
           </S.BtnBar>

@@ -22,6 +22,9 @@ const Request = async (
     })
     .then((res) => {
       return res.data;
+    })
+    .catch((err) => {
+      throw new Error(err);
     });
 };
 
