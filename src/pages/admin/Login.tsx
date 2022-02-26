@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
-import * as S from "./style";
+import * as S from "../../styles/login";
 
 const Login = () => {
   const idRef: React.RefObject<HTMLInputElement> = useRef(null);

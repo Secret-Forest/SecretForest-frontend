@@ -1,7 +1,7 @@
-import * as S from "./styled";
+import * as S from "../styles/boardList";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import Request from "../../../api/axios";
+import Request from "../api/axios";
 import { Link } from "react-router-dom";
 
 interface BoardDataType {

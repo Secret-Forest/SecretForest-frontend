@@ -1,8 +1,8 @@
-import * as S from "./styled";
+import * as S from "../styles/showPost";
 // import report from "../../../assets/image/report.png";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import { useEffect, useState } from "react";
-import Request from "../../../api/axios";
+import Request from "../api/axios";
 import { Params, useParams } from "react-router-dom";
 
 interface commentArrayType {

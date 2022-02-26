@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import * as S from "./style";
+import * as S from "../../../styles/adminHeader";
 
 const AdminHeader = () => {
   return (
