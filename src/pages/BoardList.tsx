@@ -2,20 +2,13 @@ import * as S from "../styles/boardList";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import Request from "../api/axios";
-import { Link } from "react-router-dom";
-
-interface BoardDataType {
-  id: number;
-  content: string;
-  title: string;
-  writer: string;
-}
-type BoardDataStateType = BoardDataType[] | [];
+import Board from "../components/Board";
+import { BoardDataType } from "../interface/boardList";
 
 const BoardList = () => {
   const searchKeywordRef = useRef<HTMLInputElement>(null);
 
-  const [BoardData, setBoardData] = useState<BoardDataStateType>([]);
+  const [BoardData, setBoardData] = useState<BoardDataType[]>([]);
 
   useEffect(() => {
     Request("", "get").then((res) => {
@@ -44,16 +37,7 @@ const BoardList = () => {
     <S.ListPage>
       <S.BoardList>
         {BoardData.map((data) => (
-          <Link
-            key={data.id}
-            to={`${data.id}`}
-            style={{ textDecoration: "none" }}
-          >
-            <S.Board>
-              <h1>{data.title}</h1>
-              <h2>{data.writer}</h2>
-            </S.Board>
-          </Link>
+          <Board data={data} key={data.id} />
         ))}
       </S.BoardList>
       <S.Search>
