@@ -5,7 +5,7 @@ export const LoginPage = styled.main`
   grid-gap: 30px;
   justify-items: center;
   align-items: center;
-  height: 49rem;
+  margin-top: 150px;
 `;
 
 export const InputGlub = styled.div`

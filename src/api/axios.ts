@@ -44,7 +44,7 @@ export const RequestWithToken = async (
       method,
       data,
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("Authorization"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     })
     .then((res) => {

@@ -1,28 +1,27 @@
-import axios from "axios";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Request } from "../../api/axios";
 import * as S from "../../styles/login";
 
+interface authObjType {
+  readonly adminId: string;
+  readonly password: string;
+}
+
 const Login = () => {
+  const navigate = useNavigate();
   const idRef: React.RefObject<HTMLInputElement> = useRef(null);
   const pwRef: React.RefObject<HTMLInputElement> = useRef(null);
 
-  Request("http://13.209.58.38:8080/admin/auth/login", "post", {
-    adminId: "admin",
-    password: "adminpassword",
-  });
-
-  const submit = () => {
-    const id: string | undefined = idRef.current?.value;
-    const pw = pwRef.current?.value;
+  const validation = (id: string, pw: string): boolean => {
     if (!id || !pw) {
       Swal.fire({
         title: "ID와 PW를 모두 입력하세요!",
         icon: "warning",
         allowOutsideClick: false,
       });
-      return null;
+      return false;
     }
 
     if (id.length > 20 || pw.length > 20) {
@@ -31,7 +30,7 @@ const Login = () => {
         title: "비정상적인 입력이 감지되었습니다!!!",
         allowOutsideClick: false,
       });
-      return null;
+      return false;
     }
 
     Swal.fire({
@@ -39,6 +38,28 @@ const Login = () => {
       title: "환영합니다",
       allowOutsideClick: false,
     });
+
+    return true;
+  };
+
+  const submit = () => {
+    console.log("submit");
+    const id: string = idRef.current?.value ?? "";
+    const pw: string = pwRef.current?.value ?? "";
+
+    if (validation(id, pw)) {
+      const authObj: authObjType = {
+        adminId: id,
+        password: pw,
+      };
+
+      Request("admin/auth/login", "post", authObj).then(({ data }) => {
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+      });
+
+      navigate("/admin");
+    }
   };
 
   return (

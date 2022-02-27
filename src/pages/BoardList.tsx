@@ -5,12 +5,7 @@ import Board from "../components/Board";
 import { BoardDataType } from "../interface/boardList";
 import search from "../assets/image/searchBtn.svg";
 import next from "../assets/image/next.png";
-
-interface urlPramsType {
-  page: number;
-  size: number;
-  title: string;
-}
+import { urlPramsType } from "../interface/urlPrams";
 
 const BoardList = () => {
   const searchKeywordRef = useRef<HTMLInputElement>(null);
