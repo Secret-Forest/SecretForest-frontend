@@ -83,3 +83,9 @@ export const pageBtn = styled.div`
     text-align: center;
   }
 `;
+
+export const Empty = styled.h1`
+  font-size: 30px;
+  font-family: monospace;
+  padding: 80px 0 0 30px;
+`;

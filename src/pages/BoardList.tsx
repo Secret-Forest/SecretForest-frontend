@@ -8,11 +8,16 @@ import { BoardDataType } from "../interface/boardList";
 interface urlPramsType {
   page: number;
   size: number;
+  title: string;
 }
 
 const BoardList = () => {
   const searchKeywordRef = useRef<HTMLInputElement>(null);
-  const [urlPrams, setUrlPrams] = useState<urlPramsType>({ page: 0, size: 6 });
+  const [urlPrams, setUrlPrams] = useState<urlPramsType>({
+    page: 0,
+    size: 6,
+    title: "",
+  });
 
   const [BoardData, setBoardData] = useState<BoardDataType[]>([]);
 
@@ -21,29 +26,19 @@ const BoardList = () => {
   }, [urlPrams]);
 
   const getBoardList = async () => {
-    await Request(`?page=${urlPrams.page}&size=${urlPrams.size}`, "get").then(
-      (res) => {
-        console.log(res);
-        setBoardData(res.postViewDtoList);
-      }
-    );
+    const url = urlPrams.title
+      ? `search/title?page=${urlPrams.page}&size=${urlPrams.size}&title=${urlPrams.title}`
+      : `?page=${urlPrams.page}&size=${urlPrams.size}`;
+
+    await Request(url, "get").then((res) => {
+      setBoardData(res.postViewDtoList);
+    });
   };
 
   const onSearch = () => {
     const keyword: string | undefined = searchKeywordRef.current?.value.trim();
-    if (!keyword) {
-      Swal.fire({
-        title: "모든 항목을 불러옵니다",
-        icon: "success",
-        allowOutsideClick: false,
-      });
-    } else {
-      Swal.fire({
-        title: `<${keyword}>에 대한 결과입니다`,
-        icon: "success",
-        allowOutsideClick: false,
-      });
-    }
+    setUrlPrams({ ...urlPrams, title: keyword ?? "" });
+    console.log(urlPrams.title);
   };
 
   const NextPage = () => {
@@ -64,18 +59,22 @@ const BoardList = () => {
 
   return (
     <S.ListPage>
-      <div style={{ width: "70%" }}>
-        <S.BoardList>
-          {BoardData.map((data) => (
-            <Board data={data} key={data.id} />
-          ))}
-        </S.BoardList>
-        <S.pageBtn>
-          <img src="image/next.png" onClick={PreviousPage} alt="Previous" />
-          <p>{urlPrams.page + 1}</p>
-          <img src="image/next.png" onClick={NextPage} alt="next" />
-        </S.pageBtn>
-      </div>
+      {BoardData.length ? (
+        <div style={{ width: "70%" }}>
+          <S.BoardList>
+            {BoardData.map((data) => (
+              <Board data={data} key={data.id} />
+            ))}
+          </S.BoardList>
+          <S.pageBtn>
+            <img src="image/next.png" onClick={PreviousPage} alt="Previous" />
+            <p>{urlPrams.page + 1}</p>
+            <img src="image/next.png" onClick={NextPage} alt="next" />
+          </S.pageBtn>
+        </div>
+      ) : (
+        <S.Empty>관련 게시물을 찾을 수 없습니다</S.Empty>
+      )}
       <S.Search>
         <S.SearchBar>
           <S.SearchInput
