@@ -32,7 +32,7 @@ const PutPost = () => {
     const res = await Request(`match/post/${id}`, "post", { password: value });
 
     if (res.status !== 200) {
-      navigate("/");
+      navigate(`../${id}`);
     }
   };
 
