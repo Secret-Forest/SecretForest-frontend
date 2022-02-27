@@ -55,8 +55,10 @@ interface boardList {
 const AdminMain = () => {
   const [urlPrams, setPrams] = useState<urlPramsType>({ page: 0, size: 5 });
   const [censorshipBoard, setCensorshipBoard] = useState<boardList[]>([]);
+  const [reportBoard, setReportBoard] = useState<boardList[]>([]);
   useEffect(() => {
     getCensorshipBoard();
+    getReportBoard();
   }, []);
 
   const getCensorshipBoard = () => {
@@ -65,6 +67,14 @@ const AdminMain = () => {
       "get"
     ).then(({ data }) => {
       setCensorshipBoard(data.postViewDtoList);
+    });
+  };
+  const getReportBoard = () => {
+    RequestWithToken(
+      `admin/report/board?page=${urlPrams.page}&size=${urlPrams.size}`,
+      "get"
+    ).then(({ data }) => {
+      setReportBoard(data.postViewDtoList);
     });
   };
 
@@ -87,7 +97,7 @@ const AdminMain = () => {
           <img src={report} alt="신고된 게시물" />
         </S.SectionTitle>
         <S.List>
-          {BoardData.map((data) => (
+          {reportBoard.map((data) => (
             <S.ReportBoard key={data.id}>
               <h1>{data.title}</h1>
               <h2>{data.writer}</h2>
