@@ -1,5 +1,7 @@
 import * as S from "../../styles/adminMain";
 import report from "../../assets/image/report.png";
+import { useEffect } from "react";
+import Request from "../../api/axios";
 
 const BoardData = [
   {
@@ -43,6 +45,16 @@ const BoardData = [
 ];
 
 const AdminMain = () => {
+  useEffect(() => {
+    getCensorshipBoard();
+  }, []);
+
+  const getCensorshipBoard = () => {
+    Request(`admin/censorship/board`, "get").then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <S.MainPage>
       <S.ListSection>
