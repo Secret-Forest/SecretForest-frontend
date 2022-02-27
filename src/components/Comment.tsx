@@ -3,6 +3,7 @@ import Swal, { SweetAlertResult } from "sweetalert2";
 import Request from "../api/axios";
 import { commentArrayType } from "../interface/showPost";
 import * as S from "../styles/showPostComment";
+import report from "../assets/image/report.png";
 
 interface props {
   commentData: commentArrayType[];
@@ -90,6 +91,7 @@ const Comment = ({ commentData, id, getData }: props) => {
             <div>
               <S.Profile profileColor={randomColor()}></S.Profile>
               <S.NickName>{CommentArray?.writer}</S.NickName>
+              <S.Report src={report} alt="comment report" />
             </div>
             <S.CommnetData>{CommentArray?.comment}</S.CommnetData>
           </S.Comment>

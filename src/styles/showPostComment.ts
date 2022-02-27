@@ -8,7 +8,7 @@ export const Comment = styled.div`
 
   div:first-child {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
   }
 `;
 
@@ -28,7 +28,7 @@ export const Profile = styled.div<colorType>`
   margin-right: 0.8em;
 `;
 
-export const NickName = styled.label`
+export const NickName = styled.p`
   font-size: 1.3em;
 `;
 
@@ -72,4 +72,10 @@ export const CommentInput = styled.input`
   height: 40px;
   top: 100px;
   left: 0;
+`;
+
+export const Report = styled.img`
+  margin-left: 10px;
+  height: 20px;
+  cursor: pointer;
 `;
