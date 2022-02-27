@@ -1,6 +1,6 @@
 import * as S from "../styles/boardList";
 import { useEffect, useRef, useState } from "react";
-import Request from "../api/axios";
+import { Request } from "../api/axios";
 import Board from "../components/Board";
 import { BoardDataType } from "../interface/boardList";
 import search from "../assets/image/searchBtn.svg";

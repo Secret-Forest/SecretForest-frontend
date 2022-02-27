@@ -1,24 +1,17 @@
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
+import { Request } from "../../api/axios";
 import * as S from "../../styles/login";
 
 const Login = () => {
   const idRef: React.RefObject<HTMLInputElement> = useRef(null);
   const pwRef: React.RefObject<HTMLInputElement> = useRef(null);
 
-  axios
-    .request({
-      method: "post",
-      url: "http://13.209.58.38:8080/admin/auth/login",
-      data: {
-        adminId: "admin",
-        password: "adminpassword",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-    });
+  Request("http://13.209.58.38:8080/admin/auth/login", "post", {
+    adminId: "admin",
+    password: "adminpassword",
+  });
 
   const submit = () => {
     const id: string | undefined = idRef.current?.value;

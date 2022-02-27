@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Swal, { SweetAlertResult } from "sweetalert2";
-import Request from "../api/axios";
+import { Request } from "../api/axios";
 import { commentArrayType } from "../interface/showPost";
 import * as S from "../styles/showPostComment";
 import report from "../assets/image/report.png";

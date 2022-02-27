@@ -1,7 +1,7 @@
 import * as S from "../../styles/adminMain";
 import report from "../../assets/image/report.png";
 import { useEffect } from "react";
-import Request from "../../api/axios";
+import { Request } from "../../api/axios";
 
 const BoardData = [
   {

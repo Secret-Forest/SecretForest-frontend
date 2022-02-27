@@ -1,7 +1,7 @@
 import * as S from "../styles/putBoard";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import React, { useEffect, useState } from "react";
-import Request from "../api/axios";
+import { Request } from "../api/axios";
 import {
   NavigateFunction,
   Params,

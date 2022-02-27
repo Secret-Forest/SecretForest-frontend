@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Swal from "sweetalert2";
-import Request from "../api/axios";
+import { Request } from "../api/axios";
 import * as S from "../styles/writePost";
 
 const WritePost = () => {
