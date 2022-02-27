@@ -6,7 +6,7 @@ export const MainPage = styled.main`
   align-items: center;
   justify-items: center;
   grid-gap: 1rem;
-  margin-top: 50px;
+  margin-top: 10px;
 `;
 
 export const ListSection = styled.section`

@@ -9,10 +9,6 @@ export const Header = styled.header`
   height: 60px;
   padding: 5px 0;
   display: flex;
-
-  position: fixed;
-  top: 0;
-  left: 0;
 `;
 
 export const AdminMark = styled.span`
