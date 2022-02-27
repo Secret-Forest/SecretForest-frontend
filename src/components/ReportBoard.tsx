@@ -4,6 +4,7 @@ import * as S from "../styles/adminMain";
 import report from "../assets/image/report.png";
 import { boardList } from "../interface/admin";
 import { urlPramsType } from "../interface/urlPrams";
+import { Link } from "react-router-dom";
 
 const ReportBoard = () => {
   const [urlPrams, setPrams] = useState<urlPramsType>({ page: 0, size: 5 });
@@ -29,10 +30,17 @@ const ReportBoard = () => {
       </S.SectionTitle>
       <S.List>
         {reportBoard.map((data) => (
-          <S.ReportBoard key={data.id}>
-            <h1>{data.title}</h1>
-            <h2>{data.writer}</h2>
-          </S.ReportBoard>
+          <Link
+            to={`/${data.id}`}
+            style={{ textDecoration: "none" }}
+            key={data.id}
+            title={`${data.id}`}
+          >
+            <S.ReportBoard>
+              <h1>{data.title}</h1>
+              <h2>{data.writer}</h2>
+            </S.ReportBoard>
+          </Link>
         ))}
       </S.List>
     </S.ListSection>

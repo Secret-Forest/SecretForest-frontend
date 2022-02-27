@@ -18,7 +18,6 @@ const CensorshipBoard = () => {
       `admin/censorship/board?page=${urlPrams.page}&size=${urlPrams.size}`,
       "get"
     ).then(({ data }) => {
-      console.log(data.postViewDtoList);
       setCensorshipBoard(data.postViewDtoList);
     });
   };
