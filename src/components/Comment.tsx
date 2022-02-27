@@ -83,17 +83,25 @@ const Comment = ({ commentData, id, getData }: props) => {
     }
   };
 
+  const onReport = (id: number) => {
+    Request(`report/comment/${id}`, "put");
+  };
+
   return (
     <S.CommentBar>
       <S.Over>
-        {commentData.map((CommentArray: commentArrayType, index: number) => (
+        {commentData.map((comment: commentArrayType, index: number) => (
           <S.Comment key={index}>
             <div>
               <S.Profile profileColor={randomColor()}></S.Profile>
-              <S.NickName>{CommentArray?.writer}</S.NickName>
-              <S.Report src={report} alt="comment report" />
+              <S.NickName>{comment?.writer}</S.NickName>
+              <S.Report
+                src={report}
+                onClick={() => onReport(comment.id)}
+                alt="comment report"
+              />
             </div>
-            <S.CommnetData>{CommentArray?.comment}</S.CommnetData>
+            <S.CommnetData>{comment?.comment}</S.CommnetData>
           </S.Comment>
         ))}
       </S.Over>
