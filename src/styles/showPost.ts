@@ -86,7 +86,6 @@ export const BtnBar = styled.div`
   width: 20%;
   padding: 0 2.5%;
   height: 100%;
-  /* background-color: rgba(43, 12, 100, 1); */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -95,11 +94,12 @@ export const BtnBar = styled.div`
     background-color: #314f3e;
     outline: none;
     border: none;
-    width: 7.2em;
-    height: 2em;
+    width: 9rem;
+    height: 2.5rem;
     margin: 10px;
+
     color: white;
-    font-size: 1.4em;
+    font-size: 1.4rem;
 
     cursor: pointer;
 

@@ -37,7 +37,7 @@ const PutPost = () => {
   };
 
   useEffect(() => {
-    // certification();
+    certification();
     getData();
   }, []);
 

@@ -2,7 +2,12 @@ import * as S from "../styles/showPost";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import { useEffect, useState } from "react";
 import Request from "../api/axios";
-import { Params, useParams } from "react-router-dom";
+import {
+  NavigateFunction,
+  Params,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import Comment from "../components/Comment";
 import { commentArrayType } from "../interface/showPost";
 
@@ -20,6 +25,7 @@ const ShowPost = () => {
   const { id }: Readonly<Params<string>> = useParams();
   const [boardData, setBoardData] = useState<boardDataType | null>(null);
   const [commentData, setCommentData] = useState<commentArrayType[]>([]);
+  const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
     getData();
@@ -31,7 +37,7 @@ const ShowPost = () => {
       setCommentData(data.commentsPostResponses);
     });
   };
-  const onPatch = async () => {};
+  const onPatch = () => navigate(`/put/${id}`);
 
   const onDelete = () => {
     Swal.fire({
