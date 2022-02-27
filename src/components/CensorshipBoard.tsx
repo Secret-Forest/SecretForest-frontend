@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { RequestWithToken } from "../api/axios";
 import { boardList } from "../interface/admin";
 import { urlPramsType } from "../interface/urlPrams";
@@ -17,6 +18,7 @@ const CensorshipBoard = () => {
       `admin/censorship/board?page=${urlPrams.page}&size=${urlPrams.size}`,
       "get"
     ).then(({ data }) => {
+      console.log(data.postViewDtoList);
       setCensorshipBoard(data.postViewDtoList);
     });
   };
@@ -26,10 +28,17 @@ const CensorshipBoard = () => {
       <S.SectionTitle>검열해야하는 게시물</S.SectionTitle>
       <S.List>
         {censorshipBoard.map((data) => (
-          <S.ReportBoard key={data.id}>
-            <h1>{data.title}</h1>
-            <h2>{data.writer}</h2>
-          </S.ReportBoard>
+          <Link
+            to={`/${data.id}`}
+            style={{ textDecoration: "none" }}
+            key={data.id}
+            title={`${data.id}`}
+          >
+            <S.ReportBoard>
+              <h1>{data.title}</h1>
+              <h2>{data.writer}</h2>
+            </S.ReportBoard>
+          </Link>
         ))}
       </S.List>
     </S.ListSection>
