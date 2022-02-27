@@ -50,15 +50,18 @@ interface boardList {
   writer: string;
   title: string;
   id: number;
+  comment?: string;
 }
 
 const AdminMain = () => {
   const [urlPrams, setPrams] = useState<urlPramsType>({ page: 0, size: 5 });
   const [censorshipBoard, setCensorshipBoard] = useState<boardList[]>([]);
   const [reportBoard, setReportBoard] = useState<boardList[]>([]);
+  const [reportComment, setReportComment] = useState<boardList[]>([]);
   useEffect(() => {
     getCensorshipBoard();
     getReportBoard();
+    getReportComment();
   }, []);
 
   const getCensorshipBoard = () => {
@@ -69,12 +72,23 @@ const AdminMain = () => {
       setCensorshipBoard(data.postViewDtoList);
     });
   };
+
   const getReportBoard = () => {
     RequestWithToken(
       `admin/report/board?page=${urlPrams.page}&size=${urlPrams.size}`,
       "get"
     ).then(({ data }) => {
       setReportBoard(data.postViewDtoList);
+    });
+  };
+
+  const getReportComment = () => {
+    RequestWithToken(
+      `admin/report/comment?page=${urlPrams.page}&size=${urlPrams.size}`,
+      "get"
+    ).then(({ data }) => {
+      console.log(data.commentsViewResponseList);
+      setReportComment(data.commentsViewResponseList);
     });
   };
 
@@ -111,9 +125,9 @@ const AdminMain = () => {
           <img src={report} alt="신고된 댓글" />
         </S.SectionTitle>
         <S.List>
-          {BoardData.map((data) => (
+          {reportComment.map((data) => (
             <S.ReportBoard key={data.id}>
-              <h1>{data.title}</h1>
+              <h1>{data.comment}</h1>
               <h2>{data.writer}</h2>
             </S.ReportBoard>
           ))}

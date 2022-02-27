@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainPage = styled.main`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: center;
   justify-items: center;
   grid-gap: 1rem;
   margin-top: 10px;
@@ -11,7 +10,7 @@ export const MainPage = styled.main`
 
 export const ListSection = styled.section`
   /* background-color: red; */
-  height: 40rem;
+  height: fit-content;
   width: 25rem;
 `;
 
@@ -38,23 +37,6 @@ export const List = styled.ul`
   /* background-color: rgba(255, 255, 0, 0.5); */
   border-top: 4px solid #314f3e;
   border-bottom: 1px solid #314f3e;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  scrollbar-color: #415f4e #a0a0a0;
-  scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    width: 7px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #415f4e;
-    border-radius: 3.5px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: grey;
-    border-radius: 3.5px;
-  }
 `;
 
 export const ReportBoard = styled.li`
