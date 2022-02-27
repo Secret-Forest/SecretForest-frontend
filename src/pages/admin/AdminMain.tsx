@@ -1,4 +1,5 @@
 import * as S from "../../styles/adminMain";
+import report from "../../assets/image/report.png";
 
 const BoardData = [
   {
@@ -58,7 +59,7 @@ const AdminMain = () => {
       <S.ListSection>
         <S.SectionTitle>
           신고된 게시물
-          <img src="image/report.png" alt="신고된 게시물" />
+          <img src={report} alt="신고된 게시물" />
         </S.SectionTitle>
         <S.List>
           {BoardData.map((data) => (
@@ -72,7 +73,7 @@ const AdminMain = () => {
       <S.ListSection>
         <S.SectionTitle>
           신고된 댓글
-          <img src="image/report.png" alt="신고된 댓글" />
+          <img src={report} alt="신고된 댓글" />
         </S.SectionTitle>
         <S.List>
           {BoardData.map((data) => (

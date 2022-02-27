@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import Request from "../api/axios";
 import Board from "../components/Board";
 import { BoardDataType } from "../interface/boardList";
+import search from "../assets/image/searchBtn.svg";
+import next from "../assets/image/next.png";
 
 interface urlPramsType {
   page: number;
@@ -66,9 +68,9 @@ const BoardList = () => {
             ))}
           </S.BoardList>
           <S.pageBtn>
-            <img src="image/next.png" onClick={PreviousPage} alt="Previous" />
+            <img src={next} onClick={PreviousPage} alt="Previous" />
             <p>{urlPrams.page + 1}</p>
-            <img src="image/next.png" onClick={NextPage} alt="next" />
+            <img src={next} onClick={NextPage} alt="next" />
           </S.pageBtn>
         </div>
       ) : (
@@ -80,7 +82,7 @@ const BoardList = () => {
             placeholder="제목 혹은 닉네임을 입력해주세요."
             ref={searchKeywordRef}
           />
-          <img src="image/searchBtn.svg" alt="검색 버튼" onClick={onSearch} />
+          <img src={search} alt="검색 버튼" onClick={onSearch} />
         </S.SearchBar>
         <S.SuggestedSearchTerm></S.SuggestedSearchTerm>
       </S.Search>

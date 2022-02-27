@@ -6,6 +6,8 @@ import { Params, useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import { commentArrayType } from "../interface/showPost";
 
+import report from "../assets/image/report.png";
+
 interface boardDataType {
   id: number;
   title: string;
@@ -71,7 +73,7 @@ const ShowPost = () => {
           <S.BtnBar>
             <button onClick={onPatch}>수정</button>
             <button onClick={onDelete}>삭제</button>
-            <img src="image/report.png" alt="신고 버튼" onClick={onReport} />
+            <img src={report} alt="신고 버튼" onClick={onReport} />
           </S.BtnBar>
         </S.TitleBar>
         <S.PostContext>{boardData?.content}</S.PostContext>
