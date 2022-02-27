@@ -21,10 +21,10 @@ const Request = async (
       data,
     })
     .then((res) => {
-      return res.data;
+      return res;
     })
     .catch((err) => {
-      throw new Error(err);
+      return err;
     });
 };
 

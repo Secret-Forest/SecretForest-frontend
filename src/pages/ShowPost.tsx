@@ -24,22 +24,12 @@ const ShowPost = () => {
   }, []);
 
   const getData = (): void => {
-    Request(`board/${id}`, "get").then((res) => {
-      setBoardData(res);
-      setCommentData(res.commentsPostResponses);
+    Request(`board/${id}`, "get").then(({ data }) => {
+      setBoardData(data);
+      setCommentData(data.commentsPostResponses);
     });
   };
-  const onPatch = async () => {
-    const { value }: SweetAlertResult<string> = await Swal.fire({
-      title: "비밀번호를 입력하세요",
-      allowOutsideClick: false,
-      input: "text",
-    });
-
-    const data = await Request(`match/post/${id}`, "post", { password: value });
-
-    console.log(data === "");
-  };
+  const onPatch = async () => {};
 
   const onDelete = () => {
     Swal.fire({

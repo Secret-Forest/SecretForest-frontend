@@ -6,6 +6,7 @@ import Login from "./pages/admin/Login";
 import BoardList from "./pages/BoardList";
 import ShowPost from "./pages/ShowPost";
 import WritePost from "./pages/writePost";
+import PutPost from "./pages/putBoard";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/*" element={<Header />}>
           <Route element={<BoardList />} path="" />
           <Route element={<WritePost />} path="write" />
+          <Route element={<PutPost />} path="put/:id" />
           <Route element={<ShowPost />} path=":id" />
         </Route>
         <Route path="/admin" element={<AdminHeader />}>
