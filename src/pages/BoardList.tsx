@@ -5,16 +5,29 @@ import Request from "../api/axios";
 import Board from "../components/Board";
 import { BoardDataType } from "../interface/boardList";
 
+interface urlPramsType {
+  page: number;
+  size: number;
+}
+
 const BoardList = () => {
   const searchKeywordRef = useRef<HTMLInputElement>(null);
+  const [urlPrams, setUrlPrams] = useState<urlPramsType>({ page: 0, size: 6 });
 
   const [BoardData, setBoardData] = useState<BoardDataType[]>([]);
 
   useEffect(() => {
-    Request("", "get").then((res) => {
-      setBoardData(res.postViewDtoList);
-    });
-  }, []);
+    getBoardList();
+  }, [urlPrams]);
+
+  const getBoardList = async () => {
+    await Request(`?page=${urlPrams.page}&size=${urlPrams.size}`, "get").then(
+      (res) => {
+        console.log(res);
+        setBoardData(res.postViewDtoList);
+      }
+    );
+  };
 
   const onSearch = () => {
     const keyword: string | undefined = searchKeywordRef.current?.value.trim();
@@ -33,13 +46,36 @@ const BoardList = () => {
     }
   };
 
+  const NextPage = () => {
+    setUrlPrams({
+      ...urlPrams,
+      page: urlPrams.page + 1,
+    });
+  };
+
+  const PreviousPage = () => {
+    if (!urlPrams.page) return;
+
+    setUrlPrams({
+      ...urlPrams,
+      page: urlPrams.page - 1,
+    });
+  };
+
   return (
     <S.ListPage>
-      <S.BoardList>
-        {BoardData.map((data) => (
-          <Board data={data} key={data.id} />
-        ))}
-      </S.BoardList>
+      <div style={{ width: "70%" }}>
+        <S.BoardList>
+          {BoardData.map((data) => (
+            <Board data={data} key={data.id} />
+          ))}
+        </S.BoardList>
+        <S.pageBtn>
+          <img src="image/next.png" onClick={PreviousPage} alt="Previous" />
+          <p>{urlPrams.page + 1}</p>
+          <img src="image/next.png" onClick={NextPage} alt="next" />
+        </S.pageBtn>
+      </div>
       <S.Search>
         <S.SearchBar>
           <S.SearchInput

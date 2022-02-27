@@ -51,25 +51,35 @@ export const SuggestedSearchTerm = styled.div`
 
 export const BoardList = styled.section`
   max-height: 100%;
-  width: 70%;
+  width: 100%;
   height: fit-content;
   border-top: #2f4c3c 5px solid;
   border-bottom: #2f4c3c 3px solid;
-  overflow-y: auto;
-  overflow-x: hidden;
 
-  scrollbar-color: #415f4e #a0a0a0;
-  scrollbar-width: thin;
+  overflow: hidden;
+`;
 
-  &::-webkit-scrollbar {
-    width: 7px;
+export const pageBtn = styled.div`
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  grid-gap: 30px;
+
+  align-items: center;
+
+  img {
+    cursor: pointer;
+    height: 20px;
+    &:first-child {
+      transform: rotate(180deg);
+    }
   }
-  &::-webkit-scrollbar-thumb {
-    background-color: #415f4e;
-    border-radius: 3.5px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: grey;
-    border-radius: 3.5px;
+
+  p {
+    font-size: 16px;
+    text-align: center;
   }
 `;
