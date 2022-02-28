@@ -82,25 +82,28 @@ const WritePost = () => {
   };
 
   const submit = () => {
-    const writer = nickNameRef.current?.value;
-    const password = PWRef.current?.value;
-    const PWCheck = PWCheckRef.current?.value;
+    const writer = nickNameRef.current;
+    const password = PWRef.current;
+    const PWCheck = PWCheckRef.current;
 
-    const title = titleRef.current?.value;
-    const content = contextRef.current?.value;
+    const title = titleRef.current;
+    const content = contextRef.current;
+    if (writer && password && PWCheck && title && content) {
+      const submitData: submitDataType = {
+        content: content.value,
+        password: password.value,
+        title: title.value,
+        writer: writer.value,
+      };
 
-    const submitData: submitDataType = {
-      content,
-      password,
-      title,
-      writer,
-    };
-
-    if (checkInput({ ...submitData, PWCheck }) === false) {
-      return null;
-    } else {
-      console.log(submitData);
-      Request("board", "post", submitData);
+      if (checkInput({ ...submitData, PWCheck: PWCheck.value })) {
+        Request("board", "post", submitData);
+        writer.value = "";
+        password.value = "";
+        PWCheckRef.current.value = "";
+        title.value = "";
+        content.value = "";
+      }
     }
   };
 
