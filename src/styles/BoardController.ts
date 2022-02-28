@@ -13,6 +13,7 @@ export const DarkBackground = styled.div`
   align-items: center;
 
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
 `;
 
 export const CommentViewer = styled.div`

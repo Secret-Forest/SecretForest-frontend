@@ -7,3 +7,8 @@ export interface boardList {
   id: number;
   comment?: string;
 }
+
+export interface readMoreType {
+  state: boolean;
+  id: number;
+}

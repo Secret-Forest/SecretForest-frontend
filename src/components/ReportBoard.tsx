@@ -2,18 +2,13 @@ import { useEffect, useState } from "react";
 import { RequestWithToken } from "../api/axios";
 import * as S from "../styles/adminMain";
 import report from "../assets/image/report.png";
-import { boardList } from "../interface/admin";
+import { boardList, readMoreType } from "../interface/admin";
 import { urlPramsType } from "../interface/urlPrams";
 import { Link } from "react-router-dom";
 import next from "../assets/image/next.png";
 import controller from "../assets/image/controller.svg";
 import boardLink from "../assets/image/page.svg";
 import BoardController from "./BoardController";
-
-interface readMoreType {
-  state: boolean;
-  id: number;
-}
 
 const ReportBoard = () => {
   const [urlPrams, setPrams] = useState<urlPramsType>({ page: 0, size: 5 });
