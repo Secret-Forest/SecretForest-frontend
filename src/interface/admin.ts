@@ -1,3 +1,5 @@
+import { BoardDataType } from "./boardList";
+
 export interface boardList {
   content: string;
   writer: string;

@@ -110,3 +110,14 @@ export const PageBtn = styled.div`
     text-align: center;
   }
 `;
+
+export const Controller = styled.button`
+  img {
+    width: 20px;
+  }
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
