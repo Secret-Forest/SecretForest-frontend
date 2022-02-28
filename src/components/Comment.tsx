@@ -85,6 +85,17 @@ const Comment = ({ commentData, id, getData }: props) => {
 
   const onReport = (id: number) => {
     Request(`report/comment/${id}`, "put");
+    const toast = Swal.mixin({
+      toast: true,
+      showConfirmButton: false,
+      position: "top-end",
+      timer: 3000,
+      timerProgressBar: true,
+    });
+    toast.fire({
+      text: `해당 댓글을 신고했습니다`,
+      icon: "success",
+    });
   };
 
   return (
