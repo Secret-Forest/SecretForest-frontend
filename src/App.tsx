@@ -7,8 +7,15 @@ import BoardList from "./pages/BoardList";
 import ShowPost from "./pages/ShowPost";
 import WritePost from "./pages/writePost";
 import PutPost from "./pages/putBoard";
+import useInterval from "use-interval";
+import { getNewToken } from "./assets/function/getNewToken";
 
 function App() {
+  const refreshTimer: number = 60 * 20 * 1000;
+  useInterval(() => {
+    getNewToken();
+  }, refreshTimer);
+
   return (
     <BrowserRouter>
       <Routes>
