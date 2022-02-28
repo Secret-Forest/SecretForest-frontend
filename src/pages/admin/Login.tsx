@@ -33,12 +33,6 @@ const Login = () => {
       return false;
     }
 
-    Swal.fire({
-      icon: "success",
-      title: "환영합니다",
-      allowOutsideClick: false,
-    });
-
     return true;
   };
 
@@ -53,7 +47,8 @@ const Login = () => {
         password: pw,
       };
 
-      Request("admin/auth/login", "post", authObj).then(({ data }) => {
+      Request("admin/auth/login", "post", authObj).then(({ data, status }) => {
+        console.log(status);
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
       });
