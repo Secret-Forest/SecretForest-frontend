@@ -42,6 +42,11 @@ const ReportComment = () => {
     setReadMore(newData);
   };
 
+  const commentDelete = (id: number) => {
+    RequestWithToken(`admin/report/${id}`, "delete");
+    offReadMore();
+  };
+
   const offReadMore = () => {
     const newData: readMoreType = {
       ...readMore,
@@ -64,6 +69,7 @@ const ReportComment = () => {
           <ReportCommentReadMore
             data={readMore.data}
             offReadMore={offReadMore}
+            commentDelete={commentDelete}
           />
         )}
       </S.List>
