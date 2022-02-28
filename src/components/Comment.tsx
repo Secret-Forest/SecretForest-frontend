@@ -71,6 +71,7 @@ const Comment = ({ commentData, id, getData }: props) => {
         });
         return;
       }
+
       const commentWriterData: commentWriterDataType = {
         writer: commentWriter,
         password: commentPassword,
@@ -80,6 +81,7 @@ const Comment = ({ commentData, id, getData }: props) => {
       Request(`comment/${id}`, "post", commentWriterData).then(() => {
         getData();
       });
+      setComment("");
     }
   };
 
