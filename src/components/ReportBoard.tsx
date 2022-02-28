@@ -7,6 +7,7 @@ import { urlPramsType } from "../interface/urlPrams";
 import { Link } from "react-router-dom";
 import next from "../assets/image/next.png";
 import controller from "../assets/image/controller.svg";
+import boardLink from "../assets/image/page.svg";
 import BoardController from "./BoardController";
 
 interface readMoreType {
@@ -92,17 +93,19 @@ const ReportBoard = () => {
         {reportBoard.length ? (
           reportBoard.map((data) => (
             <div key={data.id} style={{ position: "relative" }}>
+              <S.ReportBoard>
+                <h1>{data.title}</h1>
+                <h2>{data.writer}</h2>
+              </S.ReportBoard>
               <Link
                 to={`/${data.id}`}
                 style={{ textDecoration: "none" }}
                 title={`${data.id}`}
               >
-                <S.ReportBoard>
-                  <h1>{data.title}</h1>
-                  <h2>{data.writer}</h2>
-                </S.ReportBoard>
+                <S.BoardLink onClick={() => onReadMore(data.id)}>
+                  <img src={boardLink} alt="controller" />
+                </S.BoardLink>
               </Link>
-
               <S.Controller onClick={() => onReadMore(data.id)}>
                 <img src={controller} alt="controller" />
               </S.Controller>

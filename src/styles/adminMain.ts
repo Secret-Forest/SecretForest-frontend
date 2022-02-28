@@ -48,11 +48,6 @@ export const ReportBoard = styled.li`
   display: grid;
   align-items: center;
 
-  cursor: pointer;
-  &:active {
-    transform: scale(1.01);
-  }
-
   h1 {
     color: #324d3b;
     font-size: 25px;
@@ -125,4 +120,9 @@ export const Controller = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+`;
+
+export const BoardLink = styled(Controller)`
+  top: 0;
+  right: 25px;
 `;
