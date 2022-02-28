@@ -62,7 +62,7 @@ const CensorshipBoard = () => {
             </Link>
           ))
         ) : (
-          <h1 style={{ margin: "10px 20px" }}>게시물이 더 존재하지 않습니다</h1>
+          <h1 style={{ margin: "10px 20px" }}>게시물이 존재하지 않습니다</h1>
         )}
       </S.List>
 
