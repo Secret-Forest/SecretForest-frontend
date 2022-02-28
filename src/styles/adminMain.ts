@@ -115,6 +115,11 @@ export const Controller = styled.button`
   img {
     width: 20px;
   }
+  :active {
+    transform: scale(0.95);
+  }
+  cursor: pointer;
+
   background-color: transparent;
   border: none;
   position: absolute;
