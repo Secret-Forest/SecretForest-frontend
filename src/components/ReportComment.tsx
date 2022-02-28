@@ -7,6 +7,7 @@ import { urlPramsType } from "../interface/urlPrams";
 import OneReportComment from "./OneReportComment";
 import ReportCommentReadMore from "./ReportCommentReadMore";
 import { BoardDataType } from "../interface/boardList";
+import next from "../assets/image/next.png";
 
 interface readMoreType {
   state: boolean;
@@ -24,6 +25,26 @@ const ReportComment = () => {
   useEffect(() => {
     getReportComment();
   }, []);
+
+  useEffect(() => {
+    getReportComment();
+  }, [urlPrams]);
+
+  const NextPage = () => {
+    setPrams({
+      ...urlPrams,
+      page: urlPrams.page + 1,
+    });
+  };
+
+  const PreviousPage = () => {
+    if (!urlPrams.page) return;
+
+    setPrams({
+      ...urlPrams,
+      page: urlPrams.page - 1,
+    });
+  };
 
   const getReportComment = () => {
     RequestWithToken(
@@ -69,9 +90,17 @@ const ReportComment = () => {
         <img src={report} alt="신고된 댓글" />
       </S.SectionTitle>
       <S.List>
-        {reportComment.map((data) => (
-          <OneReportComment data={data} key={data.id} onReadMore={onReadMore} />
-        ))}
+        {reportComment.length ? (
+          reportComment.map((data) => (
+            <OneReportComment
+              data={data}
+              key={data.id}
+              onReadMore={onReadMore}
+            />
+          ))
+        ) : (
+          <h1 style={{ margin: "10px 20px" }}>게시물이 더 존재하지 않습니다</h1>
+        )}
         {readMore.state && (
           <ReportCommentReadMore
             data={readMore.data}
@@ -81,6 +110,11 @@ const ReportComment = () => {
           />
         )}
       </S.List>
+      <S.PageBtn>
+        <img src={next} onClick={PreviousPage} alt="Previous" />
+        <p>{urlPrams.page + 1}</p>
+        <img src={next} onClick={NextPage} alt="next" />
+      </S.PageBtn>
     </S.ListSection>
   );
 };

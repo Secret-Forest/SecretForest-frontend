@@ -85,3 +85,28 @@ export const ReportBoard = styled.li`
     align-self: flex-start;
   }
 `;
+
+export const PageBtn = styled.div`
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  grid-gap: 30px;
+
+  align-items: center;
+
+  img {
+    cursor: pointer;
+    height: 20px;
+    &:first-child {
+      transform: rotate(180deg);
+    }
+  }
+
+  p {
+    font-size: 16px;
+    text-align: center;
+  }
+`;
