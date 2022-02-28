@@ -4,6 +4,7 @@ import * as S from "../styles/adminMain";
 import report from "../assets/image/report.png";
 import { boardList } from "../interface/admin";
 import { urlPramsType } from "../interface/urlPrams";
+import OneReportComment from "./OneReportComment";
 
 const ReportComment = () => {
   const [urlPrams, setPrams] = useState<urlPramsType>({ page: 0, size: 5 });
@@ -21,6 +22,7 @@ const ReportComment = () => {
       setReportComment(data.commentsViewResponseList);
     });
   };
+
   return (
     <S.ListSection>
       <S.SectionTitle>
@@ -29,10 +31,7 @@ const ReportComment = () => {
       </S.SectionTitle>
       <S.List>
         {reportComment.map((data) => (
-          <S.ReportBoard key={data.id}>
-            <h1>{data.comment}</h1>
-            <h2>{data.writer}</h2>
-          </S.ReportBoard>
+          <OneReportComment data={data} key={data.id} />
         ))}
       </S.List>
     </S.ListSection>
