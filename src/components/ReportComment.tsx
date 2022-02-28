@@ -45,6 +45,7 @@ const ReportComment = () => {
   const commentDelete = (id: number) => {
     RequestWithToken(`admin/report/${id}`, "delete");
     offReadMore();
+    getReportComment();
   };
 
   const offReadMore = () => {

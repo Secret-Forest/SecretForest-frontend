@@ -11,9 +11,11 @@ import useInterval from "use-interval";
 import { getNewToken } from "./assets/function/getNewToken";
 
 function App() {
-  const refreshTimer: number = 60 * 20 * 1000;
+  const refreshTimer: number = 60 * 10 * 1000;
+
   useInterval(() => {
     getNewToken();
+    console.log("aaa");
   }, refreshTimer);
 
   return (
