@@ -16,6 +16,15 @@ export const DarkBackground = styled.div`
 `;
 
 export const CommentViewer = styled.div`
+  @keyframes fadein {
+    from {
+      transform: scale(0.4);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  animation: fadein 0.6s ease-in;
   height: 400px;
   width: 600px;
   background-color: white;
