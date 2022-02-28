@@ -102,7 +102,7 @@ const ReportBoard = () => {
                 style={{ textDecoration: "none" }}
                 title={`${data.id}`}
               >
-                <S.BoardLink onClick={() => onReadMore(data.id)}>
+                <S.BoardLink>
                   <img src={boardLink} alt="controller" />
                 </S.BoardLink>
               </Link>

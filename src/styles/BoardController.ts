@@ -16,11 +16,24 @@ export const DarkBackground = styled.div`
 `;
 
 export const CommentViewer = styled.div`
-  height: 400px;
-  width: 600px;
+  @keyframes fadein {
+    from {
+      transform: scale(0.4);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  animation: fadein 0.7s ease-out;
+  height: 130px;
+  width: 400px;
   background-color: white;
   border-radius: 20px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 `;
 
 export const Cancel = styled.button`
@@ -53,8 +66,8 @@ export const Button = styled.button`
   &.Pass {
     background-color: #ffd43b;
   }
-  height: 30px;
-  width: 100px;
+  height: 50px;
+  width: 150px;
   border: 0;
   border-radius: 15px;
   color: white;
