@@ -6,8 +6,14 @@ interface props {
   data: boardList;
   offReadMore: () => void;
   commentDelete: (id: number) => void;
+  ReportCommentPass: (id: number) => void;
 }
-const ReportCommentReadMore = ({ data, offReadMore, commentDelete }: props) => {
+const ReportCommentReadMore = ({
+  data,
+  offReadMore,
+  commentDelete,
+  ReportCommentPass,
+}: props) => {
   return (
     <S.DarkBackground>
       <S.CommentViewer>
@@ -15,7 +21,12 @@ const ReportCommentReadMore = ({ data, offReadMore, commentDelete }: props) => {
           <img src={cancel} alt="cancel button" />
         </S.Cancel>
         <S.ButtonBar>
-          <S.Button onClick={() => commentDelete(data.id)}>Delete</S.Button>
+          <S.Button className="Pass" onClick={() => ReportCommentPass(data.id)}>
+            Pass
+          </S.Button>
+          <S.Button className="Delete" onClick={() => commentDelete(data.id)}>
+            Delete
+          </S.Button>
         </S.ButtonBar>
         <S.Content>{data.comment}</S.Content>
       </S.CommentViewer>

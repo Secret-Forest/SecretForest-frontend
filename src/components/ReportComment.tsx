@@ -42,10 +42,16 @@ const ReportComment = () => {
     setReadMore(newData);
   };
 
-  const commentDelete = (id: number) => {
-    RequestWithToken(`admin/report/${id}`, "delete");
-    offReadMore();
+  const commentDelete = async (id: number) => {
+    await RequestWithToken(`admin/report/${id}`, "delete");
     getReportComment();
+    offReadMore();
+  };
+
+  const ReportCommentPass = async (id: number) => {
+    await RequestWithToken(`admin/report/${id}/pass`, "put");
+    getReportComment();
+    offReadMore();
   };
 
   const offReadMore = () => {
@@ -71,6 +77,7 @@ const ReportComment = () => {
             data={readMore.data}
             offReadMore={offReadMore}
             commentDelete={commentDelete}
+            ReportCommentPass={ReportCommentPass}
           />
         )}
       </S.List>

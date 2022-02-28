@@ -58,8 +58,12 @@ export const Button = styled.button`
   :active {
     transform: scale(0.95);
   }
-
-  background-color: #ff6b6b;
+  &.Delete {
+    background-color: #ff6b6b;
+  }
+  &.Pass {
+    background-color: #ffd43b;
+  }
   height: 30px;
   width: 100px;
   border: 0;
