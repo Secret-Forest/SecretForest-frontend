@@ -46,6 +46,7 @@ export const ReportBoard = styled.li`
   border: #314f3e solid 0.1rem;
 
   display: grid;
+  position: relative;
   align-items: center;
 
   h1 {

@@ -1,5 +1,6 @@
 import { boardList } from "../interface/admin";
 import * as S from "../styles/adminMain";
+import controller from "../assets/image/controller.svg";
 
 interface props {
   data: boardList;
@@ -12,9 +13,12 @@ const OneReportComment = ({ data, onReadMore }: props) => {
   };
 
   return (
-    <S.ReportBoard onClick={readMore}>
+    <S.ReportBoard>
       <h1>{data.comment}</h1>
       <h2>{data.writer}</h2>
+      <S.Controller onClick={readMore}>
+        <img src={controller} alt="controller" />
+      </S.Controller>
     </S.ReportBoard>
   );
 };
