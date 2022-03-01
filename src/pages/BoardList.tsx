@@ -9,6 +9,7 @@ import { urlPramsType } from "../interface/urlPrams";
 
 const BoardList = () => {
   const searchKeywordRef = useRef<HTMLInputElement>(null);
+  const [searchLog, setSearchLog] = useState<string[]>([]);
   const [urlPrams, setUrlPrams] = useState<urlPramsType>({
     page: 0,
     size: 6,
@@ -21,6 +22,16 @@ const BoardList = () => {
     getBoardList();
   }, [urlPrams]);
 
+  useEffect(() => {
+    getSearchLog();
+  }, []);
+
+  const getSearchLog = () => {
+    const log: string = localStorage.getItem("searchLog") || "";
+    console.log(log);
+    if (log !== "") setSearchLog(JSON.parse(log));
+  };
+
   const getBoardList = async () => {
     const url = urlPrams.title
       ? `search/title?page=${urlPrams.page}&size=${urlPrams.size}&title=${urlPrams.title}`
@@ -31,6 +42,15 @@ const BoardList = () => {
     });
   };
 
+  const addSearchLog = (searchString: string): void => {
+    localStorage.setItem(
+      "searchLog",
+      JSON.stringify([...searchLog, searchString])
+    );
+    setSearchLog([...searchLog, searchString]);
+    console.log("aaa", searchLog, searchString);
+  };
+
   const onSearch = () => {
     if (searchKeywordRef.current) {
       const keyword: string | undefined =
@@ -38,6 +58,7 @@ const BoardList = () => {
       setUrlPrams({ ...urlPrams, title: keyword ?? "" });
       console.log(urlPrams.title);
 
+      addSearchLog(searchKeywordRef.current.value);
       searchKeywordRef.current.value = "";
     }
   };
@@ -84,7 +105,11 @@ const BoardList = () => {
           />
           <img src={search} alt="검색 버튼" onClick={onSearch} />
         </S.SearchBar>
-        <S.SuggestedSearchTerm></S.SuggestedSearchTerm>
+        <S.SuggestedSearchTerm>
+          {searchLog.map((searchString, index) => (
+            <h1 key={index}>{searchString}</h1>
+          ))}
+        </S.SuggestedSearchTerm>
       </S.Search>
     </S.ListPage>
   );
