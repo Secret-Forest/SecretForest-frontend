@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RequestWithToken } from "../api/axios";
 import { boardList, readMoreType } from "../interface/admin";
 import { urlPramsType } from "../interface/urlPrams";
@@ -10,6 +10,7 @@ import controller from "../assets/image/controller.svg";
 import boardLink from "../assets/image/page.svg";
 
 const CensorshipBoard = () => {
+  const navigate = useNavigate();
   const [urlPrams, setPrams] = useState<urlPramsType>({ page: 0, size: 5 });
   const [censorshipBoard, setCensorshipBoard] = useState<boardList[]>([]);
   const [readMore, setReadMore] = useState<readMoreType>({
@@ -72,9 +73,13 @@ const CensorshipBoard = () => {
     RequestWithToken(
       `admin/censorship/board?page=${urlPrams.page}&size=${urlPrams.size}`,
       "get"
-    ).then(({ data }) => {
-      setCensorshipBoard(data.postViewDtoList);
-    });
+    )
+      .then(({ data }) => {
+        setCensorshipBoard(data.postViewDtoList);
+      })
+      .catch(() => {
+        navigate("/");
+      });
   };
 
   return (

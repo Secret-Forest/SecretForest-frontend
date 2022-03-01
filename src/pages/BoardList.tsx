@@ -32,9 +32,14 @@ const BoardList = () => {
   };
 
   const onSearch = () => {
-    const keyword: string | undefined = searchKeywordRef.current?.value.trim();
-    setUrlPrams({ ...urlPrams, title: keyword ?? "" });
-    console.log(urlPrams.title);
+    if (searchKeywordRef.current) {
+      const keyword: string | undefined =
+        searchKeywordRef.current?.value.trim();
+      setUrlPrams({ ...urlPrams, title: keyword ?? "" });
+      console.log(urlPrams.title);
+
+      searchKeywordRef.current.value = "";
+    }
   };
 
   const NextPage = () => {
