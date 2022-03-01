@@ -96,10 +96,18 @@ export const Empty = styled.h1`
 `;
 
 export const SearchHistory = styled.span`
-  background-color: whitesmoke;
+  background-color: #eee;
   width: fit-content;
-  height: 20px;
-  padding: 5px 20px;
+  max-width: 300px;
+  word-wrap: break-word;
+
+  padding: 10px 20px;
   border-radius: 25px;
   font-size: 20px;
+  font-family: -apple-system;
+  cursor: pointer;
+
+  :active {
+    transform: scale(0.95);
+  }
 `;
