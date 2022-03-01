@@ -107,7 +107,7 @@ const BoardList = () => {
         </S.SearchBar>
         <S.SuggestedSearchTerm>
           {searchLog.map((searchString, index) => (
-            <h1 key={index}>{searchString}</h1>
+            <S.SearchHistory key={index}>{searchString}</S.SearchHistory>
           ))}
         </S.SuggestedSearchTerm>
       </S.Search>

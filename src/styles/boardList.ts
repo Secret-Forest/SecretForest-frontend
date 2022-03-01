@@ -44,9 +44,14 @@ export const SearchBar = styled.div`
 
 export const SuggestedSearchTerm = styled.div`
   width: 100%;
-  height: 44rem;
+  height: 43rem;
   margin-top: 1rem;
   border: 2px solid #a0a0a0;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
 `;
 
 export const BoardList = styled.section`
@@ -88,4 +93,13 @@ export const Empty = styled.h1`
   font-size: 30px;
   font-family: monospace;
   padding: 80px 0 0 30px;
+`;
+
+export const SearchHistory = styled.span`
+  background-color: whitesmoke;
+  width: fit-content;
+  height: 20px;
+  padding: 5px 20px;
+  border-radius: 25px;
+  font-size: 20px;
 `;
