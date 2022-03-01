@@ -42,6 +42,15 @@ const BoardList = () => {
     });
   };
 
+  const getHistoryStringSearch = (searchString: string) => {
+    setUrlPrams({
+      ...urlPrams,
+      title: searchString,
+    });
+
+    getBoardList();
+  };
+
   const addSearchLog = (searchString: string): void => {
     localStorage.setItem(
       "searchLog",
@@ -107,7 +116,12 @@ const BoardList = () => {
         </S.SearchBar>
         <S.SuggestedSearchTerm>
           {searchLog.map((searchString, index) => (
-            <S.SearchHistory key={index}>{searchString}</S.SearchHistory>
+            <S.SearchHistory
+              onClick={() => getHistoryStringSearch(searchString)}
+              key={index}
+            >
+              {searchString}
+            </S.SearchHistory>
           ))}
         </S.SuggestedSearchTerm>
       </S.Search>
