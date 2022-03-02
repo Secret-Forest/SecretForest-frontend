@@ -6,7 +6,6 @@ interface dataPropType {
   content?: string;
 
   password?: string;
-
   adminId?: string;
 }
 
